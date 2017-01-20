@@ -1,0 +1,584 @@
+/*
+	Theme Name: Poor People's Campaign Theme
+	Description: A theme built for poorpeoplescampaign.org, based on the
+	theme "Port" from Theme Trust
+	Author: Daniel Jones
+	Template: portthemetrust
+	Version: 0.1
+*/
+
+@import url("../portthemetrust/style.css");
+
+/**-----------------------------------------
+ Typography
+-----------------------------------------**/
+
+/**-----------------------------------------
+ # Web fonts
+-----------------------------------------**/
+@font-face {
+	font-family: 'junction-bold';
+	src: url('fonts/junction/junction-bold.eot');
+	src: url('fonts/junction/junction-bold.eot?#iefix') format('embedded-opentype'),
+		 url('fonts/junction/junction-bold.woff') format('woff'),
+		 url('fonts/junction/junction-bold.ttf') format('truetype'),
+		 url('fonts/junction/junction-bold.svg#junction-bold') format('svg');
+	font-weight: bold;
+}
+
+@font-face {
+    font-family: 'junction-regular';
+    src: url('fonts/junction/junction-regular.eot');
+    src: url('fonts/junction/junction-regular.eot?#iefix') format('embedded-opentype'),
+         url('fonts/junction/junction-regular.woff') format('woff'),
+         url('fonts/junction/junction-regular.ttf') format('truetype'),
+         url('fonts/junction/junction-regular.svg#junctionregular') format('svg');
+    font-weight: normal;
+}
+
+@font-face {
+	font-family: 'ostrich-sans-black';
+	src: url('fonts/ostrich-sans/ostrich-sans-black.eot');
+	src: url('fonts/ostrich-sans/ostrich-sans-black.eot?#iefix') format('embedded-opentype'),
+		 url('fonts/ostrich-sans/ostrich-sans-black.woff') format('woff'),
+		 url('fonts/ostrich-sans/ostrich-sans-black.ttf') format('truetype'),
+		 url('fonts/ostrich-sans/ostrich-sans-black.svg#ostrich-sans-black') format('svg');
+	font-weight: bold;
+}
+
+p,
+li,
+blockquote {
+	font-family: 'junction-bold', sans-serif;
+	color: #424136;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: #2E2D26;
+	font-family: 'ostrich-sans-black', sans-serif;
+
+}
+
+/**-----------------------------------------
+ Header
+-----------------------------------------**/
+#header .top .inside {
+	padding: 5px 10px;
+}
+.top__donate {
+	display: none;
+	position: absolute;
+	right: 115px;
+	top: 25px;
+	border-bottom: 0px solid white;
+	font-size: 1.6em;
+	vertical-align: middle;
+	color: white;
+	font-weight: bold;
+	-webkit-transition: .1s border-width;
+	transition: .1s border-width;
+}
+@media(min-width: 30em) {
+	.top__donate {
+		display: block;
+	}
+	.top__donate:hover {
+		color: white;
+		border-width: 5px;
+	}
+}
+
+/**-----------------------------------------
+ Home Page
+-----------------------------------------**/
+
+/**-----------------------------------------
+ # Banner
+-----------------------------------------**/
+#homeBanner #bannerText {
+	margin-left: 0;
+	margin-right: 0;
+	width: 70%;
+	position: absolute;
+	left: 15%;
+}
+#homeBanner #bannerText .main {
+	font-size: 5.5em;
+	box-sizing: border-box;
+	margin-bottom: 0 !important;
+	padding: 15px;
+	line-height: .7em;
+	background-color: rgba(67, 132, 181, .8);
+	font-family: 'ostrich-sans-black', sans-serif;
+
+}
+.innerBannerText {
+	line-height: .7em;
+	vertical-align: sub;
+}
+#homeBanner #bannerText .secondary {
+	font-family: 'junction-bold';
+	padding: 15px 40px;
+	margin-top: 10px;
+	font-size: 1.5em;
+	line-height: 1.2em !important;
+	background-color: rgba(178, 53, 53, .8);
+	color: white;
+}
+
+/**-----------------------------------------
+ # Home Page Sections
+-----------------------------------------**/
+.home-section {
+	margin: 2em 0;
+}
+.home-section__head {
+	margin-bottom: 2em;
+}
+.home-section__title {
+	font-size: 2em;
+	display: inline-block;
+	width: 100%;
+	padding: .1em 0;
+	margin: 0;
+	text-align: center;
+	font-family: 'ostrich-sans-black';
+	letter-spacing: .025em;
+	color: white;
+	background-color: #4384B5;
+}
+@media(min-width: 40em) {
+	.home-section__title {
+		font-size: 3em;
+	}
+}
+
+/**-----------------------------------------
+ ## Featured Video
+-----------------------------------------**/
+.featured-video-wrapper {
+	max-width: 60em;
+	margin: 0 auto;
+}
+/**-----------------------------------------
+ ## Featured Pages
+-----------------------------------------**/
+.featured-pages {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
+	-ms-flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+
+	-webkit-justify-content: space-around;
+	justify-content: space-around;
+
+	max-width: 75em;
+	margin: 0 auto;
+}
+.featured-page {
+	padding: 1em 0; /* padding so that there's even space on either side of the boder */
+	-webkit-box-flex: 0 1 25em;
+	-ms-box-flex: 0 1 25em;
+	-moz-box-flex: 0 1 25em;
+	-webkit-flex: 0 1 25em;
+	-ms-flex: 0 1 25em;
+	flex: 0 1 25em;
+	font-family: 'junction-bold';
+	text-align: center;
+
+}
+.featured-page:not(:last-child) {
+	border-bottom: 5px dashed #B23535;
+}
+.featured-page__title {
+	max-width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: inherit;
+	font-size: 1.5em;
+	color: #2E2D26;
+}
+.featured-page__description {
+	max-width: 80%;
+	margin: 1em auto 0;
+}
+.featured-page__description > p {
+	font-size: 1.2em;
+	line-height: 1.2em;
+}
+.featured-page__description > p:last-child {
+	margin-bottom: 0;
+}
+@media(min-width: 50em) {
+	.featured-page:not(:last-child) {
+		margin-right: 1em; /* forces wrapping when a row gets too tight */
+	}
+}
+@media(min-width: 75em) {
+	.featured-pages {
+		-ms-flex-wrap: nowrap;
+		-webkit-flex-wrap: nowrap;
+		flex-wrap: nowrap;
+	}
+	.featured-page {
+		padding: 0;
+		margin: 2em 1em 0;
+	}
+	.featured-page:not(:last-child) {
+		border-bottom: 0;
+	}
+	.featured-page__description {
+		max-width: 100%;
+	}
+}
+
+/**-----------------------------------------
+ ## Links to the blog
+-----------------------------------------**/
+.recent-post {
+	max-width: 50em;
+	padding: 1em 0;
+	margin: 0 auto;
+	border-bottom: 2px solid #424136;
+}
+.recent-post__title,
+.recent-post__excerpt {
+	max-width: 90%;
+	margin: 0 auto;
+}
+.recent-post__title {
+	font-size: 2em;
+	-webkit-transition: .3s all;
+	transition: .3s all;
+}
+.recent-post__image {
+	max-height: 65vh;
+	margin: 1em auto;
+}
+.recent-post__excerpt {
+	font-size: 1.2em;
+	line-height: 1.2em;
+}
+.recent-post__excerpt > p:nth-last-child(2) {
+	margin-bottom: .25em;
+}
+.recent-post__read-more {
+	font-size: 1em;
+	font-family: 'junction-bold';
+	text-decoration: underline;
+}
+.frontpage-blog-link {
+	display: block;
+	width: 20em;
+	max-width: 80%;
+	padding: .75em;
+	margin: 0 auto;
+	font-size: 1.2em;
+	font-weight: bold;
+	text-align: center;
+	color: white;
+	background-color: #B23535;
+}
+.frontpage-blog-link:hover {
+	color: white;
+}
+.frontpage-blog-link__text {
+	border-bottom: 0 solid white;
+	-webkit-transition: .1s all;
+	transition: .1s all;
+}
+.frontpage-blog-link:hover > .frontpage-blog-link__text {
+	border-bottom-width: 3px;
+}
+@media(min-width: 70em) {
+	.recent-posts {
+		display: -webkit-box;
+		display: -mox-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+
+		-webkit-justify-content: space-around;
+		justify-content: space-around;
+
+		-ms-flex-wrap;
+		-webkit-flex-wrap: wrap;
+		flex-wrap: wrap;
+
+		max-width: 95%;
+		margin: 0 auto;
+	}
+	.recent-post {
+		position: relative;
+		-webkit-box-flex: 0 0 32em;
+		-moz-box-flex: 0 0 32em;
+		-webkit-flex: 0 0 32em;
+		-ms-flex: 0 0 32em;
+		flex: 0 0 32em;
+
+		padding: 0;
+		border-bottom: 0;
+		margin: 0 1em 2em 1em;
+	}
+	.recent-post:first-child {
+		margin-left: 0;
+	}
+	.recent-post:last-child {
+		margin-right: 0;
+	}
+	.recent-post__link {
+		display: inline-block;
+	}
+	.recent-post__image {
+		margin-top: 0;
+		margin-left: 0;
+		transition: .5s all;
+	}
+	@supports (filter: blur(.5px)) or (-webkit-filter: blur(.5px)) {
+		.recent-post__image {
+			-webkit-filter: blur(.5px);
+			filter: blur(.5px);
+		}
+		.recent-post__link:hover > .recent-post__image {
+			-webkit-filter: blur(0);
+			filter: blur(0);
+		}
+	}
+	.recent-post__title {
+		z-index: 1;
+		position: absolute;
+		right: 32%;
+		padding: .5em;
+		color: white;
+		background-color: rgba(66, 65, 54, .75);
+	}
+	.recent-post__link:hover > .recent-post__title {
+		opacity: 0.5;
+	}
+	.recent-post__excerpt {
+		max-width: 100%;
+		margin-left: 0;
+	}
+}
+.ppc-donate {
+	font-size: 1.25em;
+	display: inline-block;
+	padding: .75em;
+	background-color: rgb(178, 53, 53);
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	-webkit-transition: .2s all;
+	transition: .2s all;
+}
+.ppc-donate:hover {
+	color: white;
+	background-color: rgb(133, 39, 39);
+}
+
+/**-----------------------------------------
+ Aesop Components
+-----------------------------------------**/
+.aesop-component p {
+	margin-bottom: 0;
+}
+
+.aesop-image-component-image.aesop-component-align-center {
+	max-width: none !important;
+}
+
+#content .aesop-image-component .aesop-image-component-caption {
+	font-size: 1em;
+	color: rgb(100,100,100);
+}
+
+#content .aesop-img-enlarge {
+	font-size: .8em;
+}
+
+/**-----------------------------------------
+ General Content
+-----------------------------------------**/
+blockquote {
+	font-size: 1em;
+}
+blockquote p {
+	font-size: 1.1em;
+	line-height: 1.5em;
+}
+#content p {
+	font-family: 'junction-regular';
+	font-size: 1.2em;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+#content li {
+	font-family: 'junction-regular';
+}
+
+#content .fluid-width-video-wrapper {
+	margin-bottom: 50px;
+}
+
+/**-----------------------------------------
+ Table of contents
+-----------------------------------------**/
+.ppc-toc {
+	box-sizing: border-box;
+	position: fixed;
+	right: 5%;
+	top: 15%;
+	padding: 5px 5px 15px 15px;
+	border: 2px solid #424136;
+	border-top: none;
+	border-right: none;
+	z-index: 10;
+	background-color: white;
+}
+
+.hidden {
+	display: none;
+}
+
+#content ul.ppc-toc li {
+	display: block;
+	margin-bottom: 0;
+	text-align: right;
+}
+
+.ppc-toc a {
+	font-family: 'junction-regular';
+	display: inline-block;
+	box-sizing: border-box;
+	padding: 15px 10px 15px 10px;
+	color: rgb(67, 132, 181);
+	line-height: 1em;
+}
+
+.ppc-toc a:hover {
+	text-decoration: underline;
+	color: rgb(37, 102, 151);
+}
+
+.ppc-toc .current {
+	font-family: 'junction-bold';
+	background-color: #6d96b5;
+	color: white;
+}
+
+/**-----------------------------------------
+ Gravity Forms
+-----------------------------------------**/
+.gform_description,
+.gfield_label {
+	font-family: "junction-bold";
+}
+
+.gfield_label {
+	font-size: 1.4em;
+}
+
+.gfield_description {
+	font-family: "junction-regular";
+}
+
+.gform_wrapper .ginput_container input[type="text"] {
+	font-family: "junction-bold";
+	font-size: 1.2em;
+	border: 1px solid #424136;
+}
+
+.gform_wrapper .ginput_container div.charleft {
+	color: #424136;
+}
+
+.gfield p {
+	margin-bottom: 0;
+}
+
+@media (max-width: 735px) {
+	/* Home Page */
+	#homeBanner #bannerText {
+		margin: 0;
+	}
+
+	/* Aesop Compnents */
+	.aesop-image-component-image.aesop-component-align-left {
+		float: none;
+		max-width: 100% !important;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	/* General content */
+	#pageHead h1 {
+		font-size: 2.2em;
+		line-height: 1em;
+		margin-bottom: 0px;
+	}
+	h2 {
+		font-size: 2em;
+		margin-bottom: 5px;
+		margin-top: 20px;
+	}
+	#commentForm input[type="text"],
+	#commentForm textarea {
+		box-sizing: border-box;
+		display: block;
+		width: 90% !important;
+		padding-left: 0;
+		padding-right: 0;
+		margin-left: 0;
+	}
+	#commentForm label {
+		padding-left: 0;
+	}
+}
+
+@media (max-width: 850px) {
+	#header #homeBanner #bannerText .main {
+		font-size: 2.6em;
+	}
+	#header #homeBanner #bannerText .secondary {
+		font-size: 1.1em;
+		padding: 20px;
+	}
+}
+
+@media (max-width: 950px) {
+	#content .aesop-image-component .aesop-image-component-caption {
+		font-size: .9em;
+	}
+
+	#content p {
+		font-size: 1em;
+	}
+
+	.ppc-toc {
+		display: none;
+	}
+}
+
+@media (max-width: 1375px) {
+	.ppc-toc {
+		padding: 5px;
+	}
+}
+
+@media (max-width: 1150px) {
+	.ppc-toc {
+		right: 2%;
+		padding: 2px;
+	}
+}

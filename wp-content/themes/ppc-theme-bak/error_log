@@ -1,0 +1,8 @@
+[01-Mar-2016 08:46:16 UTC] PHP Fatal error:  Call to undefined function language_attributes() in /home/poorpeop/public_html/wp-content/themes/ppc-theme/header.php on line 2
+[01-Mar-2016 08:46:16 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/poorpeop/public_html/wp-content/themes/ppc-theme/functions.php on line 9
+[13-Mar-2016 19:41:11 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/poorpeop/public_html/wp-content/themes/ppc-theme/functions.php on line 9
+[08-Jul-2016 05:09:54 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/poorpeop/public_html/wp-content/themes/ppc-theme/functions.php on line 9
+[03-Aug-2016 22:48:08 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/poorpeop/public_html/wp-content/themes/ppc-theme/functions.php on line 9
+[06-Aug-2016 08:48:50 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/poorpeop/public_html/wp-content/themes/ppc-theme/functions.php on line 9
+[08-Aug-2016 00:18:24 UTC] PHP Fatal error:  Call to undefined function language_attributes() in /home/poorpeop/public_html/wp-content/themes/ppc-theme/header.php on line 2
+[10-Aug-2016 15:17:10 UTC] PHP Fatal error:  Call to undefined function add_action() in /home/poorpeop/public_html/wp-content/themes/ppc-theme/functions.php on line 9

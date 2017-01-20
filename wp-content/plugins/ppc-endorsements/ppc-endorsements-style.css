@@ -1,0 +1,41 @@
+.ppc-endorsements {
+	max-width: 100%;
+	padding-top: 0;
+}
+
+.homeSection.ppc-endorsements .sectionHead {
+	margin-top: 0;
+}
+
+.ppc-endorsements-wrap {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 85%;
+	max-width: 1200px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.ppc-endorsement {
+	flex: 1 1 15rem;
+	max-width: 20rem;
+	margin: 1.5rem;
+}
+
+.ppc-endorsement-image {
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+
+.ppc-endorsement-title {
+	font-size: 1.5em;
+	line-height: 1.2;
+	box-sizing: border-box;
+	max-width: 95%;
+	vertical-align: center;
+	margin: 1rem auto 0 auto;
+	padding: .5rem;
+	font-family: 'junction-bold';
+}

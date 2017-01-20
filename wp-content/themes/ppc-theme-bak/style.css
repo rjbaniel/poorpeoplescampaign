@@ -1,0 +1,473 @@
+/*
+	Theme Name: Poor People's Campaign Theme
+	Description: A theme built for poorpeoplescampaign.org, based on the
+	theme "Port" from Theme Trust
+	Author: Daniel Jones
+	Template: portthemetrust
+	Version: 0.1
+*/
+
+@import url("../portthemetrust/style.css");
+
+/* Fonts */
+@font-face {
+	font-family: 'junction-bold';
+	src: url('fonts/junction/junction-bold.eot');
+	src: url('fonts/junction/junction-bold.eot?#iefix') format('embedded-opentype'),
+		 url('fonts/junction/junction-bold.woff') format('woff'),
+		 url('fonts/junction/junction-bold.ttf') format('truetype'),
+		 url('fonts/junction/junction-bold.svg#junction-bold') format('svg');
+	font-weight: bold;
+}
+
+@font-face {
+    font-family: 'junction-regular';
+    src: url('fonts/junction/junction-regular.eot');
+    src: url('fonts/junction/junction-regular.eot?#iefix') format('embedded-opentype'),
+         url('fonts/junction/junction-regular.woff') format('woff'),
+         url('fonts/junction/junction-regular.ttf') format('truetype'),
+         url('fonts/junction/junction-regular.svg#junctionregular') format('svg');
+    font-weight: normal;
+}
+
+@font-face {
+	font-family: 'ostrich-sans-black';
+	src: url('fonts/ostrich-sans/ostrich-sans-black.eot');
+	src: url('fonts/ostrich-sans/ostrich-sans-black.eot?#iefix') format('embedded-opentype'),
+		 url('fonts/ostrich-sans/ostrich-sans-black.woff') format('woff'),
+		 url('fonts/ostrich-sans/ostrich-sans-black.ttf') format('truetype'),
+		 url('fonts/ostrich-sans/ostrich-sans-black.svg#ostrich-sans-black') format('svg');
+	font-weight: bold;
+}
+
+/* Typography */
+p,
+li,
+blockquote {
+	font-family: 'junction-bold';
+	color: #424136;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: #2E2D26;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+#homeBanner #bannerText .main {
+	font-family: 'ostrich-sans-black';
+}
+
+/* Header */
+#header .top .inside {
+	padding: 5px 10px;
+}
+
+/* Home Page */
+#homeBanner #bannerText {
+	margin-left: 0;
+	margin-right: 0;
+	width: 70%;
+	position: absolute;
+	left: 15%;
+}
+#homeBanner #bannerText .main {
+	font-size: 5.5em;
+	box-sizing: border-box;
+	margin-bottom: 0 !important;
+	padding: 15px;
+	line-height: .7em;
+	background-color: rgba(67, 132, 181, .8);
+}
+
+.innerBannerText {
+	line-height: .7em;
+	vertical-align: sub;
+}
+
+#homeBanner #bannerText .secondary {
+	font-family: 'junction-bold';
+	padding: 15px 40px;
+	margin-top: 10px;
+	font-size: 1.5em;
+	line-height: 1.2em !important;
+	background-color: rgba(178, 53, 53, .8);
+	color: white;
+}
+
+#featuredPages {
+	padding-top: 50px;
+	padding-bottom: 0;
+}
+.homeSection .sectionHead {
+	box-sizing: border-box;
+	width: 100%;
+	margin: 30px auto;
+	padding: 0 !important;
+	background-color: #4384B5;
+}
+.homeSection .sectionHead h3 {
+	font-size: 3em;
+	padding: 5px;
+	font-family: 'ostrich-sans-black';
+	line-height: .8em;
+	letter-spacing: .025em;
+	color: white;
+}
+
+.sectionHead h3 span {
+	vertical-align: sub;
+}
+
+#featuredPages .title {
+	font-family: 'junction-bold';
+	font-size: 1.5em;
+	color: #2E2D26;
+}
+
+#content .page.small p {
+	font-family: 'junction-bold';
+	line-height: 1.2em;
+}
+
+#featuredPages .page p {
+	font-size: 1.1em !important;
+}
+
+.top__donate {
+	display: none;
+	position: absolute;
+	right: 115px;
+	top: 25px;
+	border-bottom: 0px solid white;
+	font-size: 1.6em;
+	vertical-align: middle;
+	color: white;
+	font-weight: bold;
+	-webkit-transition: .1s border-width;
+	transition: .1s border-width;
+}
+@media(min-width: 30em) {
+	.top__donate {
+		display: block;
+	}
+	.top__donate:hover {
+		color: white;
+		border-width: 5px;
+	}
+}
+.ppc-donate {
+	font-size: 1.25em;
+	display: inline-block;
+	padding: .75em;
+	background-color: rgb(178, 53, 53);
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	-webkit-transition: .2s all;
+	transition: .2s all;
+}
+.ppc-donate:hover {
+	color: white;
+	background-color: rgb(133, 39, 39);
+}
+.blog-link {
+	width: 75%;
+	margin: 20px auto 40px auto;
+}
+
+.blog-link-text {
+	display: inline-block;
+	width: 45%;
+	margin-right: 4%;
+	vertical-align: top;
+}
+
+#content .blog-link-title {
+	font-size: 1.5em;
+	font-family: 'junction-bold';
+	color: #2E2D26;
+}
+
+#content .blog-link-description {
+	font-size: 1.1em;
+	font-family: 'junction-bold';
+	margin-top: 10px;
+	line-height: 1.2em;
+}
+
+#content .blog-link-posts-list {
+	list-style: none;
+	margin-left: 0;
+}
+
+#content .blog-link .blog-link-post-link {
+	font-family: 'junction-bold';
+	font-size: 1.2em;
+	transition: .2s color;
+}
+#content .blog-link .blog-link-post-link:hover {
+	color: #4384B5;
+}
+.blog-link-image {
+	display: inline-block;
+	width: 49%;
+}
+
+#homeContent.homeSection {
+	padding-top: 20px !important;
+	padding-bottom: 20px !important;
+}
+
+/* Aesop Components */
+.aesop-component p {
+	margin-bottom: 0;
+}
+
+.aesop-image-component-image.aesop-component-align-center {
+	max-width: none !important;
+}
+
+#content .aesop-image-component .aesop-image-component-caption {
+	font-size: 1em;
+	color: rgb(100,100,100);
+}
+
+#content .aesop-img-enlarge {
+	font-size: .8em;
+}
+
+/* General Content */
+blockquote {
+	font-size: 1em;
+}
+blockquote p {
+	font-size: 1.1em;
+	line-height: 1.5em;
+}
+#content p {
+	font-family: 'junction-regular';
+	font-size: 1.2em;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+#content li {
+	font-family: 'junction-regular';
+}
+
+#content .fluid-width-video-wrapper {
+	margin-bottom: 50px;
+}
+
+/* Table of contents */
+.ppc-toc {
+	box-sizing: border-box;
+	position: fixed;
+	right: 5%;
+	top: 15%;
+	padding: 5px 5px 15px 15px;
+	border: 2px solid #424136;
+	border-top: none;
+	border-right: none;
+	z-index: 10;
+	background-color: white;
+}
+
+.hidden {
+	display: none;
+}
+
+#content ul.ppc-toc li {
+	display: block;
+	margin-bottom: 0;
+	text-align: right;
+}
+
+.ppc-toc a {
+	font-family: 'junction-regular';
+	display: inline-block;
+	box-sizing: border-box;
+	padding: 15px 10px 15px 10px;
+	color: rgb(67, 132, 181);
+	line-height: 1em;
+}
+
+.ppc-toc a:hover {
+	text-decoration: underline;
+	color: rgb(37, 102, 151);
+}
+
+.ppc-toc a.current {
+	font-family: 'junction-bold';
+	background-color: #6d96b5;
+	color: white;
+}
+
+/* Gravity Forms */
+.gform_description,
+.gfield_label {
+	font-family: "junction-bold";
+}
+
+.gfield_label {
+	font-size: 1.4em;
+}
+
+.gfield_description {
+	font-family: "junction-regular";
+}
+
+.gform_wrapper .ginput_container input[type="text"] {
+	font-family: "junction-bold";
+	font-size: 1.2em;
+	border: 1px solid #424136;
+}
+
+.gform_wrapper .ginput_container div.charleft {
+	color: #424136;
+}
+
+.gfield p {
+	margin-bottom: 0;
+}
+
+@media( max-width: 735px ) {
+	.blog-link {
+		width: 320px;
+		max-width: 350px;
+	}
+	.blog-link-text {
+		display: block;
+		box-sizing: border-box;
+		width: 100%;
+		padding: 0 15px 0 15px;
+		margin-bottom: 15px;
+		text-align: center;
+	}
+	#content .blog-link-description {
+		display: none;
+	}
+	.blog-link-image {
+		display: block;
+		box-sizing: border-box;
+		width: 100%;
+		padding: 0 15px 0 15px;
+	}
+}
+
+@media ( max-width: 350px ) {
+	.blog-link {
+		box-sizing: border-box;
+		width: 100%;
+		padding: 0 15px 0 15px;
+	}
+}
+
+
+@media ( max-width: 735px ) {
+	/* Home Page */
+	#homeBanner #bannerText {
+		margin: 0;
+	}
+	.homeSection .sectionHead {
+		margin-top: 10px;
+	}
+	.homeSection .sectionHead h3 {
+		font-size: 2.1em;
+	}
+	#featuredPages {
+		padding-top: 30px !important;
+	}
+	#featuredPages .title,
+	#content .blog-link-title {
+		font-size: 1.2em;
+	}
+	#featuredPages p {
+		line-height: 1.2em;
+	}
+
+	/* Aesop Compnents */
+	.aesop-image-component-image.aesop-component-align-left {
+		float: none;
+		max-width: 100% !important;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	/* General content */
+	#pageHead h1 {
+		font-size: 2.2em;
+		line-height: 1em;
+		margin-bottom: 0px;
+	}
+	h2 {
+		font-size: 2em;
+		margin-bottom: 5px;
+		margin-top: 20px;
+	}
+	#commentForm input[type="text"],
+	#commentForm textarea {
+		box-sizing: border-box;
+		display: block;
+		width: 90% !important;
+		padding-left: 0;
+		padding-right: 0;
+		margin-left: 0;
+	}
+	#commentForm label {
+		padding-left: 0;
+	}
+}
+
+@media ( max-width: 850px ) {
+	#header #homeBanner #bannerText .main {
+		font-size: 2.6em;
+	}
+	#header #homeBanner #bannerText .secondary {
+		font-size: 1.1em;
+		padding: 20px;
+	}
+}
+
+@media (max-width: 950px) {
+	#content .aesop-image-component .aesop-image-component-caption {
+		font-size: .9em;
+	}
+
+	#content p {
+		font-size: 1em;
+	}
+
+	.ppc-toc {
+		display: none;
+	}
+}
+
+@media ( max-width: 1050px ) {
+	.blog-link-posts-list-container {
+		display: none;
+	}
+}
+
+@media ( max-width: 1375px ) {
+	.ppc-toc {
+		padding: 5px;
+	}
+}
+
+@media ( max-width: 1150px ) {
+	.ppc-toc {
+		right: 2%;
+		padding: 2px;
+	}
+}
