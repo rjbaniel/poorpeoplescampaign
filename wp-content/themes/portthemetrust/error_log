@@ -1,0 +1,10 @@
+[01-Mar-2016 08:46:23 UTC] PHP Fatal error:  Call to undefined function language_attributes() in /home/poorpeop/public_html/wp-content/themes/portthemetrust/header.php on line 2
+[01-Mar-2016 08:46:23 UTC] PHP Fatal error:  Call to undefined function get_bloginfo() in /home/poorpeop/public_html/wp-content/themes/portthemetrust/functions.php on line 6
+[01-Mar-2016 08:46:24 UTC] PHP Fatal error:  Call to undefined function is_active_sidebar() in /home/poorpeop/public_html/wp-content/themes/portthemetrust/footer.php on line 2
+[01-Mar-2016 08:46:25 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/poorpeop/public_html/wp-content/themes/portthemetrust/author.php on line 1
+[01-Mar-2016 08:46:25 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/poorpeop/public_html/wp-content/themes/portthemetrust/archive.php on line 1
+[01-Mar-2016 08:46:25 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/poorpeop/public_html/wp-content/themes/portthemetrust/404.php on line 1
+[01-Mar-2016 08:46:26 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/poorpeop/public_html/wp-content/themes/portthemetrust/404.php on line 1
+[13-Mar-2016 19:41:15 UTC] PHP Fatal error:  Call to undefined function get_bloginfo() in /home/poorpeop/public_html/wp-content/themes/portthemetrust/functions.php on line 6
+[13-Mar-2016 19:41:15 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/poorpeop/public_html/wp-content/themes/portthemetrust/404.php on line 1
+[13-Mar-2016 19:41:15 UTC] PHP Fatal error:  Call to undefined function is_active_sidebar() in /home/poorpeop/public_html/wp-content/themes/portthemetrust/footer.php on line 2
