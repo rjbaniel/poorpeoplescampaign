@@ -15,7 +15,7 @@
 	);
 	ppc__home_section(
 		'recent-posts',
-		'Blog Posts',
+		'Recent Updates',
 		new WP_Query( 'posts_per_page=3' )
 	);
 	get_template_part( 'home', 'endorsements' );
