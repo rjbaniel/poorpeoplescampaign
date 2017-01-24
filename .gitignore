@@ -22,6 +22,7 @@ Thumbs.db
 *.sqlite
 
 wp-content/plugins/hello.php
+wp-content/plugins/google-analytics-dashboard-for-wp/
+wp-content/plugins/jetpack/
 wp-content/themes/twenty*/
 wp-content/themes/ppc-theme-back/
-

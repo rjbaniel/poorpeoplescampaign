@@ -32,4 +32,4 @@ class lux_vimeo
 	}
 }
 
-add_shortcode('lux_vimeo', array('lux_vimeo', 'shortcode'));
+add_shortcode('vimeo', array('lux_vimeo', 'shortcode'));

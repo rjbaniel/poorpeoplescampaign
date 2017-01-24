@@ -1,19 +1,25 @@
-<?php /*
-Template Name: Home
-*/ ?>
+<?php
+/*
+	Template Name: Home
+*/
+?>
 <?php get_header(); ?>
 	
-<div class="home-content">	
-	<div class="home-section home-section--featured-video">	
-		<div class="featured-video-wrapper">
-			<div class="fluid-width-video-wrapper" style="padding-top: 56.25%">
-				<?php echo do_shortcode( '[lux_vimeo clip_id=199846068 portrait=0]' ); ?>
-			</div>		
-		</div>
-	</div>
-	<?php get_template_part( 'part-featured-pages'); //featured pages section ?>
-	<?php get_template_part( 'part-link-to-blog'); //link to blog page ?>
-	<?php get_template_part( 'part-ppc-endorsements'); //endorsements section ?>
+<div class="home-content">
+<?php
+	get_template_part( 'home', 'video' );
+	ppc__home_section(
+		'featured-pages',
+		'Learn more about the Poor People\'s Campaign', 
+		ppc__get_featured_pages_query()
+	);
+	ppc__home_section(
+		'recent-posts',
+		'Recent Updates',
+		new WP_Query( 'posts_per_page=3' )
+	);
+	get_template_part( 'home', 'endorsements' );
+?>
 </div>
 
-<?php get_footer(); ?>	
+<?php get_footer(); ?>
