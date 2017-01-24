@@ -1,0 +1,16 @@
+.ssf-notice {
+	padding: .5em;
+	border-width: 2px;
+	border-style: solid;
+}
+.ssf-notice--success {
+	background-color: honeydew;
+	color: darkgreen;
+}
+.ssf-notice--error {
+	background-color: lavenderblush;
+	color: darkred;
+}
+.ssf-form__field {
+	margin-bottom: 1em;
+}
