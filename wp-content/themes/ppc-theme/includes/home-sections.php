@@ -16,7 +16,8 @@ function ppc__home_section_head( $name, $title ) {
 <div class="home-section__head">
 		<div class="home-section__title-wrapper">
 		<?php if ( $name == 'recent-posts' ) : ?>
-			<a href="/blog" class="home-section--recent-posts__link">
+			<a href="/updates" 
+class="home-section--recent-posts__link">
 		<?php endif; ?>
 				<h2 class="home-section__title"><?php echo $title ?></h2>
 		<?php if ( $name == 'recent-posts' ) : ?>
