@@ -13,15 +13,24 @@
 			$endorsements->the_post();
 			?>
 			<div class="ppc-endorsement">
-			<?php
-			$atts = array( 'class' => 'ppc-endorsement-image' );
-			if( has_post_thumbnail() ) {
-				the_post_thumbnail( 'medium', $atts);
-			} 
-			?>
-				<h3 class='ppc-endorsement-title'>
-					<?php the_title() ?>
-				</h3>
+				<?php
+				$endorsement_url = get_post_meta( $post->ID, 'ppc-endorsement-url', true );
+				if ( ! empty( $endorsement_url ) ) :
+				?>
+					<a href="<?php echo esc_url( $endorsement_url ); ?>" class="ppc-endorsement-link">
+				<?php
+				endif;
+				$atts = array( 'class' => 'ppc-endorsement-image' );
+				if( has_post_thumbnail() ) {
+					the_post_thumbnail( 'medium', $atts);
+				} 
+				?>
+					<h3 class='ppc-endorsement-title'>
+						<?php the_title() ?>
+					</h3>
+				<?php if ( ! empty( $endorsement_url ) ) : ?>
+					</a>
+				<?php endif; ?>
 			</div>
 		<?php endwhile; endif; ?>
  	</div>
