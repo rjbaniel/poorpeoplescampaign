@@ -21,7 +21,8 @@ if ( ! function_exists( 'aesop_quote_shortcode' ) ) {
 			'direction' => '',
 			'quote'  	=> __( 'People are made of stories, not atoms.', 'aesop-core' ),
 			'cite'  	=> '',
-			'type'  	=> 'block'
+			'type'  	=> 'block',
+			'revealfx'  => ''
 
 		);
 		$atts = apply_filters( 'aesop_quote_defaults', shortcode_atts( $defaults, $atts ) );
@@ -60,7 +61,9 @@ if ( ! function_exists( 'aesop_quote_shortcode' ) ) {
 		
 
 		// set styles
-		$style = $bgcolor || $fgcolor || $atts['height'] || $atts['width'] ? sprintf( 'style="%s%s%sheight:%s;width:%s;"', esc_attr( $bgcolor ), $bgimg, $fgcolor, esc_attr( $atts['height'] ), esc_attr( $atts['width'] ) ) : false;
+		// hide the component initially if revealfx is set
+		$visibility =  aesop_revealfx_set($atts) ? 'visibility:hidden;': false;
+		$style = $bgcolor || $fgcolor || $atts['height'] || $atts['width'] || $visibility? sprintf( 'style="%s%s%sheight:%s;width:%s;%s"', esc_attr( $bgcolor ), $bgimg, $fgcolor, esc_attr( $atts['height'] ), esc_attr( $atts['width'] ), $visibility ) : false;
 
 		$isparallax = 'on' == $atts['parallax'] ? 'quote-is-parallax' : false;
 		$lrclass = 'left' == $atts['direction'] || 'right' == $atts['direction'] ? 'quote-left-right' : false;
@@ -173,8 +176,7 @@ if ( ! function_exists( 'aesop_quote_shortcode' ) ) {
 		do_action( 'aesop_quote_inside_top', $atts, $unique ); // action ?>
 
 				<blockquote class="<?php echo sanitize_html_class( $align );?>" style="font-size:<?php echo esc_attr( $size );?>;<?php echo $fgcolor?>">
-					<span><?php echo esc_html( $atts['quote'] );?></span>
-
+					<span><?php echo aesop_component_media_filter( $atts['quote'] );?></span>
 					<?php echo $cite ;?>
 				</blockquote>
 

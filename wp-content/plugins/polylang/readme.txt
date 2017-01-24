@@ -3,8 +3,8 @@ Contributors: Chouby
 Donate link: https://polylang.pro
 Tags: multilingual, bilingual, translate, translation, language, multilanguage, international, localization
 Requires at least: 4.0
-Tested up to: 4.6
-Stable tag: 2.0.4
+Tested up to: 4.7
+Stable tag: 2.0.12
 License: GPLv2 or later
 
 Making WordPress multilingual
@@ -77,6 +77,68 @@ Don't hesitate to [give your feedback](http://wordpress.org/support/view/plugin-
 
 == Changelog ==
 
+= 2.0.12 (2016-12-19) =
+
+* Fix plugin not loaded first (introduced in 2.0.11)
+* Fix wrong translations files loaded when the language is set from the content in WP 4.7 #76
+* Fix notice when a tax query has no terms (using EXISTS or NOT EXISTS)
+
+= 2.0.11 (2016-12-12) =
+
+* Pro: Fix shared term slugs broken by a late change in WP 4.7 #73
+* Pro: Fix media taxonomies lost when creating a media translation when taxonomies sync is activated #72
+* Fix fatal error in customizer when Twenty Seventen is activated and another theme is previewed #71
+* Fix wrong plugin language on admin if user locale is different from site locale in WP 4.7
+
+= 2.0.10 (2016-12-05) =
+
+* Add support for front page panels of Twenty Seventeen
+* Remove draft posts from the language switcher even when the user is logged in
+* Fix: Make argument 2 of icl_object_id optional
+* Fix a conflict with the Divi theme (#67)
+
+= 2.0.9 (2016-11-15) =
+
+* Fix javascript error in some ajax requests
+
+= 2.0.8 (2016-11-14) =
+
+* Disable admin language feature in WP 4.7+
+* Pro: fix case where a media could lose its parent post when translated on the fly by the content duplication
+* Pro: fix on the fly media created at content duplication attached to parent page instead of child page
+* Fix translations input fields not populated in languages metabox when creating a new translation in WP 4.7
+* Fix possibility to delete the translations of the default category in WP 4.7
+* Fix tag search not filtered per language in Quick edit in WP 4.7
+* Fix dropdown language switcher not working for untranslated pages
+
+= 2.0.7 (2016-10-18) =
+
+* Fix issues with static front pages introduced in version 2.0.6
+
+= 2.0.6 (2016-10-17) =
+
+* Pro: Fix translated paged slug not working on paged static front page
+* Add support for WPML filter 'wpml_language_form_input_field'
+* Fix PHP notice when using the WPML filter 'wpml_current_language'
+* Fix cases where the admin language filter is not correctly taken into account
+* Fix paged static front pages in plain permalinks
+* Fix paged static front pages for multiple domains (#43)
+* Fix warning occuring when a 3rd party plugin attempts to register anything but a string in the strings translations panel
+* Fix cross domain http request for media when using multiple domains or subdomains
+* Fix error 404 on pages when no language has been created yet
+
+= 2.0.5 (2016-09-22) Five years after! =
+
+* Pro: Fix conflict with WPBakery Visual Composer
+* Pro: Fix conflict between multiple domains SSO and FORCE_SSL_ADMIN
+* Pro: Fix duplicated fields not displayed in new translation in ACF Pro 5.4+
+* Add Tibetan and Silesian to the predefined languages list
+* Remove duplicated strings from the strings translations (even when they have a different name or group)
+* The languages and translations of custom post types and taxonomies are no more activated by default at activation
+* Allow to deactivate auto translation in secondary by setting 'lang' to an empty value
+* Fix: invalidate the cache of PLL_MO ids when adding a new language
+* Fix: don't filter secondary queries when editing a post in an untranslated post type
+
 = 2.0.4 (2016-09-06) =
 
 * Add Gujarati to the predefined languages list
@@ -132,44 +194,5 @@ Don't hesitate to [give your feedback](http://wordpress.org/support/view/plugin-
 * Fix potential performance issue by querying only taxonomies to show in quick edit to filter the category checklist
 * Fix conflict (database error) with ReOrder-posts-within-categories plugin
 * Fix languages per page option not saved
-
-= 1.9.3 (2016-06-28) =
-
-* Pro: Allow to add slashes in url slugs translations
-* Pro: Fix archive links not using translated slugs
-* Pro: Fix visitor being redirected to 404 if his browser preference is set to an inactive language
-* Fix strings translations table always back to page 1 when submitting the form (#14)
-* Fix get_pages( array( 'lang' => '' ) ) not querying all the languages
-* Fix switching the admin language filter can override the static front page settings (#16)
-
-= 1.9.2 (2016-06-06) =
-
-* Pro: fix unreachable hierarchical custom post type posts when they are sharing slugs across languages
-* Fix missing argument 3 in icl_t
-* Fix conflict with WooCommerce product variations
-
-= 1.9.1 (2016-05-23) =
-
-* Pro: add compatibility with Beaver Builder
-* Pro: fix media wrongly created when adding a new media translation
-* Add azb, ceb, de_CH_informal, es_GT, mr, nl_NL_formal to the predefined list of languages
-* Fix the language switcher not linking to media translations for anonymous visitors
-
-= 1.9 (2016-04-27) =
-
-* Pro: add the possibility to translate custom post types slugs, taxonomies slugs and more
-* Pro: add the possibility to share the same post or term slug accross languages
-* Pro: add the possibility to duplicate the content when creating a new translation
-* Pro: add the possibility to create all translations at once when uploading a media
-* Pro: add the possibility to disable a language
-* Add license and update management
-* Add inline docs for all filters and actions
-* When possible, the rel alternate hreflang now display only the language code (without the country code)
-* When combined with flags in the language switcher, wrap the language name inside <span> tags
-* Add customizer selective refresh support for the language switcher widget ( needs WP 4.5+ )
-* Fix dynamic options of the language switcher widget not working in the customizer
-* Fix possible error 404 on page shortlink when using subdomains or multiple domains
-* Fix get_adjacent_post() and wp_get_archives() for untranslated post types ( needs WP 4.4+ )
-* Fix language homepage urls not present in Yoast SEO sitemap (when the homepages display posts)
 
 See [changelog.txt](https://plugins.svn.wordpress.org/polylang/trunk/changelog.txt) for older changelog

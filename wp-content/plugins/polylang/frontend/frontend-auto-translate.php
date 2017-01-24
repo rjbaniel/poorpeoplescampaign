@@ -59,7 +59,7 @@ class PLL_Frontend_Auto_Translate {
 		global $wpdb;
 		$qv = &$query->query_vars;
 
-		if ( $query->is_main_query() || ! empty( $qv['lang'] ) || ( ! empty( $qv['post_type'] ) && ! $this->model->is_translated_post_type( $qv['post_type'] ) ) ) {
+		if ( $query->is_main_query() || isset( $qv['lang'] ) || ( ! empty( $qv['post_type'] ) && ! $this->model->is_translated_post_type( $qv['post_type'] ) ) ) {
 			return;
 		}
 
@@ -215,7 +215,7 @@ class PLL_Frontend_Auto_Translate {
 	 */
 	protected function translate_tax_query_recursive( $tax_queries ) {
 		foreach ( $tax_queries as $key => $q ) {
-			if ( isset( $q['taxonomy'] ) && $this->model->is_translated_taxonomy( $q['taxonomy'] ) ) {
+			if ( isset( $q['taxonomy'], $q['terms'] ) && $this->model->is_translated_taxonomy( $q['taxonomy'] ) ) {
 				$arr = array();
 				$field = isset( $q['field'] ) && in_array( $q['field'], array( 'slug', 'name' ) ) ? $q['field'] : 'term_id';
 				foreach ( (array) $q['terms'] as $t ) {
