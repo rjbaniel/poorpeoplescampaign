@@ -11,7 +11,7 @@
 /sitemap.*
 /wp-config.php
 /staging
-
+/wp-admin/error_log
 .*
 !.gitignore
 ~*
