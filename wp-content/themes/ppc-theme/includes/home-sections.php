@@ -56,7 +56,8 @@ if ( $query->have_posts() ) : while ( $query->have_posts() ) :
 		>
 			<img
 				class="home-section__item-image"
-				src="<?php echo esc_url( the_post_thumbnail_url( 'full' ) ); ?>"
+				src="<?php echo esc_url( 
+the_post_thumbnail_url( 'large' ) ); ?>"
 			>
 		</a>
 		<div class="home-section__item-description">
