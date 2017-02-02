@@ -26,3 +26,8 @@ wp-content/plugins/google-analytics-dashboard-for-wp/
 wp-content/plugins/jetpack/
 wp-content/themes/twenty*/
 wp-content/themes/ppc-theme-back/
+
+# Caching
+wp-content/advanced-cache.php
+wp-content/plugins/wp-super-cache/
+wp-content/wp-cache-config.php
