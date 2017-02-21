@@ -1,0 +1,9 @@
+.gcal-event-list {
+	list-style: none;
+
+}
+
+/* A little extra specificity */
+.gcal-event-list > .gcal-event {
+	margin-left: 0;
+}
