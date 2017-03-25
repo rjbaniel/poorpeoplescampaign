@@ -63,7 +63,7 @@ p, ul:not(.navigation-list), input, textarea, pre, blockquote {
 	color: #424136;
 }
 
-.gval-event p {
+.gcal-event p {
 	margin-bottom: .5rem;
 }
 
