@@ -82,6 +82,7 @@ h2, h3, h4, h5, h6 {
 
 #pageHead h1,
 h1 {
+	max-width: 12em;
 	font-size: 3.375rem;
 	line-height: 3.5rem;
 }
