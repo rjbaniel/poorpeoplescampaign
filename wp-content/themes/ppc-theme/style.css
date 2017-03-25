@@ -73,12 +73,14 @@ p, li:not(.navigation-list__item), blockquote {
 	max-width: 32em;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	margin: 0 0 .5rem 0;
+h1, #pageHead h1,
+h2, h3, h4, h5, h6 {
+	margin: 0;
 	font-family: 'ostrich-sans-black', sans-serif;
 	color: #2E2D26;
 }
 
+#pageHead h1,
 h1 {
 	font-size: 3.375rem;
 	line-height: 3.5rem;
@@ -86,7 +88,7 @@ h1 {
 
 h2 {
 	font-size: 2.25rem;
-	line-height: 2.5rem;
+	line-height: 2.25rem;
 }
 
 h3 {
@@ -101,9 +103,22 @@ h3 {
 	max-width: 75rem;
 }
 
+#pageHead {
+	padding: 0;
+	margin: 0 30px;
+}
+
+#pageHead .inside {
+	padding: 0;
+	border-bottom: 0;
+}
+
+#top {
+	margin-bottom: 2rem;
+}
 @media(min-width:76rem) {
 	#top {
-		margin-bottom: 1rem;
+		margin-bottom: 4rem;
 	}
 }
 
@@ -113,46 +128,26 @@ h3 {
 #header .top .inside {
 	padding: 5px 10px;
 }
-.top__donate {
-	display: none;
-	position: absolute;
-	right: 115px;
-	top: 25px;
-	border-bottom: 0px solid white;
-	font-size: 1.6em;
-	vertical-align: middle;
-	color: white;
-	font-weight: bold;
-	-webkit-transition: .1s border-width;
-	transition: .1s border-width;
-}
-@media(min-width: 30em) {
-	.top__donate {
-		display: block;
-	}
-	.top__donate:hover {
-		color: white;
-		border-width: 5px;
-	}
-}
 
 /**-----------------------------------------
  # Main Nav
 -----------------------------------------**/
 .navigation-list {
 	margin-top: 0;
-	background-color: #f1f0f0;
 }
 .navigation-list__item--home {
-	display: inline-block;
-	margin-right: auto;
+	display: block;
+	background-color: #b23535;
+}
+.navigation-list__home-logo {
+	margin: 0 auto;
 }
 
 /* Bar that holds the non-logo nav items */
 .navigation-list__not-home {
 	background-color: #4384b5;
 	text-align: center;
-	margin-top: .5rem;
+	margin-top: .25rem;
 }
 .navigation-list__item:not(.navigation-list__item--home) {
 	margin: 0 auto;
@@ -227,11 +222,6 @@ h3 {
 .home-content {
 	padding: 1rem;
 	background-color: #f1f0f0;
-}
-@media(min-width: 76rem) {
-	.home-content {
-		padding: 1.5rem;
-	}
 }
 
 /**-----------------------------------------
@@ -409,10 +399,6 @@ blockquote {
 	font-size: 1rem;
 }
 
-#content .fluid-width-video-wrapper {
-	margin-bottom: 50px;
-}
-
 /**-----------------------------------------
  Table of contents
 -----------------------------------------**/
@@ -478,11 +464,6 @@ blockquote {
 }
 
 @media (max-width: 735px) {
-	/* Home Page */
-	#homeBanner #bannerText {
-		margin: 0;
-	}
-
 	/* Aesop Compnents */
 	.aesop-image-component-image.aesop-component-align-left {
 		float: none;
@@ -491,17 +472,6 @@ blockquote {
 		margin-right: auto;
 	}
 
-	/* General content */
-	#pageHead h1 {
-		font-size: 2.2em;
-		line-height: 1em;
-		margin-bottom: 0px;
-	}
-	h2 {
-		font-size: 2em;
-		margin-bottom: 5px;
-		margin-top: 20px;
-	}
 	#commentForm input[type="text"],
 	#commentForm textarea {
 		box-sizing: border-box;
