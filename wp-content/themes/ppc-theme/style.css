@@ -63,6 +63,10 @@ p, ul:not(.navigation-list), input, textarea, pre, blockquote {
 	color: #424136;
 }
 
+.gval-event p {
+	margin-bottom: .5rem;
+}
+
 li:not(.navigation-list__item) {
 	margin: 0 0 .5rem 1rem;
 	font-size: 1rem;
