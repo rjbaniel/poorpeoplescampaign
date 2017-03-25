@@ -355,7 +355,7 @@ class AesopCoreGallery {
 			</script>
 			<?php
 
-			$stacked_styles = 'background-size:cover;background-position:center center';
+			$stacked_styles = 'background-size:100%;background-position:center center';
 			$styles = apply_filters( 'aesop_stacked_gallery_styles_'.$unique, $stacked_styles );
 
 			// image size
@@ -534,12 +534,19 @@ class AesopCoreGallery {
 		}
 		if (empty($height)) {
 			$height = "100%";
+		} else {
+			if (strpos($height, '/') !== FALSE)
+			{
+			   $ratio = 'data-ratio="'.$height.'"';
+			   $height ="";
+			}
 		}
 		?>
 		<div class="aesop-hero-gallery-wrapper">
 		<div id="aesop-hero-gallery-<?php echo esc_attr( $gallery_id );?>" class="fotorama" 	data-transition="<?php echo esc_attr( $transition );?>"
 																			data-width="<?php echo esc_attr( $width );?>"
 																			data-height="<?php echo esc_attr( $height );?>"
+																			<?php echo  $ratio ;?>
 																			<?php echo esc_attr( $autoplay );?>
 																			data-keyboard="false"
 																			data-allow-full-screen="false"

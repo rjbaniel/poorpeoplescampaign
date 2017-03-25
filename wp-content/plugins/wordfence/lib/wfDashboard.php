@@ -18,6 +18,8 @@ class wfDashboard {
 	
 	public $features = array();
 	
+	public $lastGenerated;
+	
 	public $tdfCommunity;
 	public $tdfPremium;
 	
@@ -98,6 +100,7 @@ class wfDashboard {
 		$this->features = array(
 			array('name' => 'Firewall', 'link' => network_admin_url('admin.php?page=WordfenceWAF'), 'state' => !(!WFWAF_ENABLED || (class_exists('wfWAFConfig') && wfWAFConfig::isDisabled())) ? self::FEATURE_ENABLED : self::FEATURE_DISABLED),
 			array('name' => 'Extended Protection', 'link' => network_admin_url('admin.php?page=WordfenceWAF'), 'state' => (!(!WFWAF_ENABLED || (class_exists('wfWAFConfig') && wfWAFConfig::isDisabled())) && WFWAF_AUTO_PREPEND) ? self::FEATURE_ENABLED : self::FEATURE_DISABLED),
+			array('name' => 'Real-time IP Blacklist', 'link' => network_admin_url('admin.php?page=WordfenceWAF'), 'state' => !wfConfig::get('isPaid') ? self::FEATURE_PREMIUM : (WFWAF_ENABLED && class_exists('wfWAFConfig') && !wfWAFConfig::get('disableWAFBlacklistBlocking') ? self::FEATURE_ENABLED : self::FEATURE_DISABLED)),
 			array('name' => 'Login Security', 'link' => network_admin_url('admin.php?page=WordfenceSecOpt#focus-loginSecurityEnabled'), 'state' => wfConfig::get('loginSecurityEnabled') ? self::FEATURE_ENABLED : self::FEATURE_DISABLED),
 			array('name' => 'Scheduled Scans', 'link' => network_admin_url('admin.php?page=WordfenceScan#top#scheduling'), 'state' => wordfence::getNextScanStartTimestamp() !== false && wfConfig::get('scheduledScansEnabled') ? self::FEATURE_ENABLED : self::FEATURE_DISABLED),
 			array('name' => 'Cellphone Sign-in', 'link' => network_admin_url('admin.php?page=WordfenceTools#top#twofactor'), 'state' => !wfConfig::get('isPaid') ? self::FEATURE_PREMIUM : (wfUtils::hasTwoFactorEnabled() ? self::FEATURE_ENABLED : self::FEATURE_DISABLED)),
@@ -108,8 +111,31 @@ class wfDashboard {
 			array('name' => 'Spam Blacklist Check', 'link' => network_admin_url('admin.php?page=WordfenceSecOpt#focus-checkSpamIP'), 'state' => !wfConfig::get('isPaid') ? self::FEATURE_PREMIUM : (wfConfig::get('checkSpamIP') ? self::FEATURE_ENABLED : self::FEATURE_DISABLED)),
 		);
 		
-		// TDF
 		$data = wfConfig::get_ser('dashboardData');
+		$lastChecked = wfConfig::get('lastDashboardCheck', 0);
+		if ((!is_array($data) || (isset($data['generated']) && $data['generated'] + 3600 < time())) && $lastChecked + 3600 < time()) {
+			$wp_version = wfUtils::getWPVersion();
+			$apiKey = wfConfig::get('apiKey');
+			$api = new wfAPI($apiKey, $wp_version);
+			wfConfig::set('lastDashboardCheck', time());
+			try {
+				$json = $api->getStaticURL('/stats.json');
+				$data = @json_decode($json, true);
+				if ($json && is_array($data)) {
+					self::processDashboardResponse($data);
+				}
+			}
+			catch (Exception $e) {
+				//Do nothing
+			}
+		}
+		
+		// Last Generated
+		if (is_array($data) && isset($data['generated'])) {
+			$this->lastGenerated = $data['generated'];
+		}
+		
+		// TDF
 		if (is_array($data) && isset($data['tdf']) && isset($data['tdf']['community'])) {
 			$this->tdfCommunity = (int) $data['tdf']['community'];
 			$this->tdfPremium = (int) $data['tdf']['premium'];
