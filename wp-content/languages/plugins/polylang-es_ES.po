@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the Plugins - Polylang - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-11-12 13:14:07+0000\n"
+"PO-Revision-Date: 2017-01-29 04:12:24+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/2.3.0-alpha\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: es\n"
 "Project-Id-Version: Plugins - Polylang - Stable (latest release)\n"
 
@@ -15,9 +15,9 @@ msgstr ""
 msgid "Tibet"
 msgstr "Tibet"
 
-#. #-#-#-#-#  tmp-polylang.pot (Polylang 2.0.8)  #-#-#-#-#
+#. #-#-#-#-#  tmp-polylang.pot (Polylang 2.1.2)  #-#-#-#-#
 #. Plugin URI of the plugin/theme
-#. #-#-#-#-#  tmp-polylang.pot (Polylang 2.0.8)  #-#-#-#-#
+#. #-#-#-#-#  tmp-polylang.pot (Polylang 2.1.2)  #-#-#-#-#
 #. Author URI of the plugin/theme
 msgid "https://polylang.pro"
 msgstr "https://polylang.pro"
@@ -103,23 +103,23 @@ msgstr "Permite compartir la misma slug de url  de entradas y términos para dis
 msgid "Share slugs"
 msgstr "Comparte slugs"
 
-#: install/plugin-updater.php:342
+#: install/plugin-updater.php:401
 msgid "Error"
 msgstr "Error"
 
-#: install/plugin-updater.php:342
+#: install/plugin-updater.php:401
 msgid "You do not have permission to install plugin updates"
 msgstr "No tienes privilegios para instalar actualizaciones de plugins"
 
 #. translators: %1$s plugin name, %3$s plugin version, %2$s, %4$s, %5$s and
 #. %6$s are html tags
-#: install/plugin-updater.php:199
+#: install/plugin-updater.php:214
 msgid "There is a new version of %1$s available. %2$sView version %3$s details%4$s or %5$supdate now%6$s."
 msgstr "Hay una nueva versión de %1$s disponible. %2$sVer versión %3$s detalles%4$s o %5$sactualiza ahora%6$s."
 
 #. translators: %1$s plugin name, %3$s plugin version, %2$s and %4$s are html
 #. tags
-#: install/plugin-updater.php:190
+#: install/plugin-updater.php:205
 msgid "There is a new version of %1$s available. %2$sView version %3$s details%4$s."
 msgstr "Hay una nueva versión de %1$s disponible. %2$sVer versión %3$s detalles%4$s."
 
@@ -137,7 +137,7 @@ msgid "Choose a flag for the language."
 msgstr "Elegir una bandera para el idioma."
 
 #. translators: accessibility text
-#: settings/table-string.php:239
+#: settings/table-string.php:250
 msgid "Filter by group"
 msgstr "Filtrar por grupo"
 
@@ -146,11 +146,11 @@ msgstr "Filtrar por grupo"
 msgid "Select %s"
 msgstr "Selecciona la %s"
 
-#: settings/table-settings.php:156
+#: settings/table-settings.php:147
 msgid "Description"
 msgstr "Descripción"
 
-#: settings/table-settings.php:155
+#: settings/table-settings.php:146
 msgid "Module"
 msgstr "Módulo"
 
@@ -162,7 +162,7 @@ msgstr "Guardar cambios"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: settings/table-languages.php:195
+#: settings/table-languages.php:206
 msgid "Delete this language and all its associated data"
 msgstr "Eliminar este idioma y toda la información asociada"
 
@@ -175,15 +175,15 @@ msgstr "Elegir %s como idioma predeterminado"
 msgid "Select as default language"
 msgstr "Establecer como idioma predeterminado"
 
-#: settings/table-languages.php:85 settings/table-languages.php:189
+#: settings/table-languages.php:85 settings/table-languages.php:200
 msgid "Edit this language"
 msgstr "Editar este idioma"
 
-#: settings/settings.php:322
+#: settings/settings.php:297
 msgid "You can set them all to the default language."
 msgstr "Puedes establecerlas todas al mismo idioma."
 
-#: settings/settings.php:320
+#: settings/settings.php:295
 msgid "There are posts, pages, categories or tags without language."
 msgstr "Hay entradas, páginas, categorías o etiquetas sin idioma."
 
@@ -1242,7 +1242,7 @@ msgid "WPML Compatibility"
 msgstr "Compatibilidad WPML"
 
 #. translators: accessibility text
-#: admin/view-translations-post.php:45 admin/view-translations-term.php:64
+#: admin/view-translations-post.php:53 admin/view-translations-term.php:64
 msgid "Translation"
 msgstr "Traducción"
 
@@ -1254,7 +1254,7 @@ msgstr "Página de Posts"
 msgid "Front Page"
 msgstr "P&aacute;gina principal"
 
-#: admin/admin-nav-menu.php:87
+#: admin/admin-nav-menu.php:81
 msgid "Add to Menu"
 msgstr "Añadir al menu"
 
@@ -1441,21 +1441,7 @@ msgstr "Polylang se ha desactivado porque lo has actualizado desde una versión 
 msgid "You are using WordPress %s. Polylang requires at least WordPress %s."
 msgstr "Estás usando WordPress %s. Polylang necesita como mínimo WordPress %s."
 
-#: include/widget-recent-posts.php:47
-msgid "Recent Posts"
-msgstr "Entradas recientes"
-
-#. translators: comments widget: 1: comment author, 2: post link
-#: include/widget-recent-comments.php:85
-msgctxt "widgets"
-msgid "%1$s on %2$s"
-msgstr "%1$s en %2$s"
-
-#: include/widget-recent-comments.php:47
-msgid "Recent Comments"
-msgstr "Comentarios recientes"
-
-#: include/widget-languages.php:85
+#: include/widget-languages.php:90
 msgid "Title:"
 msgstr "Título:"
 
@@ -1497,11 +1483,11 @@ msgstr "Muestra las banderas"
 msgid "Displays language names"
 msgstr "Muestra los nombres de los idiomas"
 
-#: modules/plugins/plugins-compat.php:97
+#: modules/plugins/plugins-compat.php:102
 msgid "Import <strong>posts, pages, comments, custom fields, categories, and tags</strong> from a WordPress export file."
 msgstr "Importa <strong>entradas, páginas, comentarios, campos personalizados, categorías y etiquetas</strong> desde un archivo de exportación de WordPress."
 
-#: include/model.php:402
+#: include/model.php:396
 msgid "Uncategorized"
 msgstr "Sin categoría"
 
@@ -1665,7 +1651,7 @@ msgstr "El nombre es como se muestra en tu sitio (por ejemplo: Español)."
 msgid "You can choose a language in the list or directly edit it below."
 msgstr "Puedes elegir un idioma de la lista o editarlo directamente abajo."
 
-#: settings/view-tab-lang.php:42
+#: include/widget-languages.php:48 settings/view-tab-lang.php:42
 msgid "Choose a language"
 msgstr "Elegir un idioma"
 
@@ -1682,11 +1668,11 @@ msgstr "Editar idioma"
 msgid "Polylang is provided with an extensive %sdocumentation%s (in English only). It includes information on how to set up your multilingual site and use it on a daily basis, a FAQ, as well as a documentation for developers to adapt their plugins and themes."
 msgstr "Polylang se distribuye con una extensa %sdocumentación%s (sólo en inglés). Se incluye información de cómo crear tu sitio multiidoma y cómo usarlo en el día a día, una página de preguntas frecuentes, así como información para que los programadores puedan adaptar sus plugins y temas."
 
-#: settings/table-string.php:258
+#: settings/table-string.php:269
 msgid "Filter"
 msgstr "Filtrar"
 
-#: settings/table-string.php:245
+#: settings/table-string.php:256
 msgid "View all groups"
 msgstr "Ver todos los grupos"
 
@@ -1732,11 +1718,11 @@ msgstr "Región"
 msgid "Full name"
 msgstr "Nombre completo"
 
-#: settings/table-languages.php:198 settings/table-string.php:208
+#: settings/table-languages.php:209 settings/table-string.php:219
 msgid "Delete"
 msgstr "Eliminar"
 
-#: settings/table-languages.php:197
+#: settings/table-languages.php:208
 msgid "You are about to permanently delete this language. Are you sure?"
 msgstr "Estás a punto de eliminar este idioma permanentemente, ¿estás seguro?"
 
@@ -1788,31 +1774,31 @@ msgstr "Taxonomías"
 msgid "Settings saved."
 msgstr "Opciones guardadas."
 
-#: settings/table-string.php:307
+#: settings/table-string.php:318
 msgid "Translations updated."
 msgstr "Traducciones actualizadas."
 
-#: include/mo.php:17 settings/settings.php:133 settings/settings.php:258
+#: admin/admin-base.php:75 include/mo.php:18 settings/settings.php:129
 msgid "Strings translations"
 msgstr "Traducciones de cadenas"
 
-#: settings/settings.php:115
+#: settings/settings.php:106
 msgid "About Polylang"
 msgstr "Acerca de Polylang"
 
-#: settings/settings.php:172
+#: settings/settings.php:166
 msgid "The language was created, but the WordPress language file was not downloaded. Please install it manually."
 msgstr "Se ha creado el idioma pero el archivo de este idioma de WordPress no se ha descargado. Por favor, instálalo manualmente."
 
-#: admin/admin-base.php:309
+#: admin/admin-base.php:337
 msgid "Filters content by language"
 msgstr "Filtrar el contenido por idioma"
 
-#: admin/admin-base.php:294
+#: admin/admin-base.php:322
 msgid "Show all languages"
 msgstr "Mostrar todos los idiomas"
 
-#: admin/admin.php:72 settings/settings-module.php:43 settings/settings.php:261
+#: admin/admin-base.php:78 admin/admin.php:72 settings/settings-module.php:43
 msgid "Settings"
 msgstr "Ajustes"
 
@@ -1840,9 +1826,9 @@ msgstr "Línea de etiquetas"
 msgid "Site Title"
 msgstr "Título del sitio"
 
-#: admin/admin-nav-menu.php:56 admin/admin-nav-menu.php:77
-#: admin/admin-nav-menu.php:80 admin/admin-nav-menu.php:109
-#: admin/admin-nav-menu.php:175 install/upgrade.php:320
+#: admin/admin-nav-menu.php:50 admin/admin-nav-menu.php:71
+#: admin/admin-nav-menu.php:74 admin/admin-nav-menu.php:103
+#: admin/admin-nav-menu.php:169 install/upgrade.php:320
 msgid "Language switcher"
 msgstr "Conmutador de idioma"
 
@@ -1902,7 +1888,7 @@ msgstr "Todos los idiomas"
 msgid "The widget is displayed for:"
 msgstr "El widget se muestra para:"
 
-#: admin/admin-filters-term.php:481
+#: admin/admin-filters-term.php:473
 msgid "None"
 msgstr "Ninguno"
 
@@ -1910,23 +1896,22 @@ msgstr "Ninguno"
 msgid "Sets the language"
 msgstr "Establece el idioma"
 
-#: settings/table-languages.php:191
+#: settings/table-languages.php:202
 msgid "Edit"
 msgstr "Editar"
 
-#: admin/admin-filters-post.php:291
+#: admin/admin-filters-post.php:306
 msgid "(no parent)"
 msgstr "(sin padre)"
 
-#: admin/admin-base.php:70 admin/admin-filters-post.php:166
-#: include/translated-post.php:96 settings/settings.php:91
-#: settings/settings.php:123 settings/settings.php:254
-#: settings/view-languages.php:12
+#: admin/admin-base.php:71 admin/admin-base.php:93
+#: admin/admin-filters-post.php:181 include/translated-post.php:96
+#: settings/settings.php:114
 msgid "Languages"
 msgstr "Idiomas"
 
 #: admin/admin-filters-columns.php:187 admin/admin-filters-media.php:54
-#: admin/admin-filters-post.php:198 admin/admin-filters-term.php:87
+#: admin/admin-filters-post.php:213 admin/admin-filters-term.php:87
 #: admin/admin-filters-term.php:141 include/translated-post.php:97
 msgid "Language"
 msgstr "Idioma"
