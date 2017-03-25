@@ -28,7 +28,7 @@ class lux_vimeo
 		if (!$atts['height'] && $width) $height = intval($width * 9 / 16);
 
 		return
-			"<iframe src='http://player.vimeo.com/video/$clip_id?title=$title&amp;byline=$byline&amp;portrait=$portrait&amp;color=$color' width='$width' height='$height' frameborder='0'></iframe>";
+			"<iframe src='https://player.vimeo.com/video/$clip_id?title=$title&amp;byline=$byline&amp;portrait=$portrait&amp;color=$color' width='$width' height='$height' frameborder='0'></iframe>";
 	}
 }
 
