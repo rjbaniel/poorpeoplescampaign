@@ -46,22 +46,52 @@
 	font-weight: bold;
 }
 
-p,
-li,
-blockquote {
-	font-family: sans-serif;
+:root {
+	font-size: 16px;
+}
+@media(min-width: 735px) {
+	:root {
+		font-size: 18px;
+	}
+}
+
+p, ul:not(.navigation-list), input, textarea, pre, blockquote {
+	margin: 0 0 1.5rem 0;
+	font-size: 1rem;
+	line-height: 1.5;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	color: #424136;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	color: #2E2D26;
-	font-family: 'ostrich-sans-black', sans-serif;
+li:not(.navigation-list__item) {
+	margin: 0 0 .5rem 1rem;
+	font-size: 1rem;
+	line-height: 1.5;
+}
 
+p, li:not(.navigation-list__item), blockquote {
+	max-width: 32em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0 0 .5rem 0;
+	font-family: 'ostrich-sans-black', sans-serif;
+	color: #2E2D26;
+}
+
+h1 {
+	font-size: 3.375rem;
+	line-height: 3.5rem;
+}
+
+h2 {
+	font-size: 2.25rem;
+	line-height: 2.5rem;
+}
+
+h3 {
+	font-size: 1.5rem;
+	line-height: 1.75rem;
 }
 
 /**-----------------------------------------
@@ -153,7 +183,7 @@ h6 {
 		display: flex;
 	}
 	.navigation-list__item-link {
-		font-size: 1.125rem;
+		font-size: 1rem;
 	}
 	.navigation-list__not-home .navigation-list__item-link {
 		padding: 1rem .5rem;
@@ -179,6 +209,7 @@ h6 {
 	.navigation-list__not-home .navigation-list__item-link {
 		position: relative;
 		top: -25%;
+		-webkit-transform: translateY(50%);
 		transform: translateY(50%);
 	}
 }
@@ -202,48 +233,15 @@ h6 {
 		padding: 1.5rem;
 	}
 }
-/**-----------------------------------------
- # Banner - DEPRECATED!!!
------------------------------------------**/
-#homeBanner #bannerText {
-	margin-left: 0;
-	margin-right: 0;
-	width: 70%;
-	position: absolute;
-	left: 15%;
-}
-#homeBanner #bannerText .main {
-	font-size: 5.5em;
-	box-sizing: border-box;
-	margin-bottom: 0 !important;
-	padding: 15px;
-	line-height: .7em;
-	background-color: rgba(67, 132, 181, .8);
-	font-family: 'ostrich-sans-black', sans-serif;
-
-}
-.innerBannerText {
-	line-height: .7em;
-	vertical-align: sub;
-}
-#homeBanner #bannerText .secondary {
-	font-family: 'junction-bold';
-	padding: 15px 40px;
-	margin-top: 10px;
-	font-size: 1.5em;
-	line-height: 1.2em !important;
-	background-color: rgba(178, 53, 53, .8);
-	color: white;
-}
 
 /**-----------------------------------------
  # Home Page Sections
 -----------------------------------------**/
 .home-section {
-	margin: 2em auto;
+	margin: 2rem auto;
 }
 .home-section__head {
-	margin-bottom: 1rem;
+	margin-bottom: 1.5rem;
 }
 .home-section__title-wrapper {
 	padding-top: .75rem;
@@ -253,7 +251,6 @@ h6 {
 }
 .home-section__title {
 	max-width: 90%;
-	font-size: 2em;
 	margin: 0 auto;
 	font-family: 'ostrich-sans-black';
 	letter-spacing: .025em;
@@ -264,43 +261,32 @@ h6 {
 		padding-top: 1rem;
 		padding-bottom: .25rem;
 	}
-	.home-section__title {
-		font-size: 3em;
-	}
 }
 
 /**-----------------------------------------
  ## Home Page Collections
 -----------------------------------------**/
-.home-section__item {
-	padding: 1rem 0;
-}
 .home-section__item:not(:last-child) {
 	border-bottom: .25rem dashed #b23535;
 }
 .home-section__item-title {
-	font-size: 1.5rem;
 	font-family: junction-bold;
-	margin-bottom: .5rem;
 }
 .home-section__item-image {
 	max-height: 40vh;
 }
-.home-section__item-description {
-	margin-top: 1rem;
-}
 .home-section__item-description > p {
 	margin: 0;
-	line-height: 1.2;
 }
 .home-section__item-description-link {
 	text-decoration: underline;
 }
 @media(min-width: 30rem) {
 	.home-section__item-image-link {
-		font-size: 0;
 		display: inline-block;
 		width: 50%;
+		margin-bottom: .5rem;
+		font-size: 0;
 	}
 	.home-section__item-description {
 		display: inline-block;
@@ -388,8 +374,8 @@ h6 {
 	transform: scale(1.05);
 }
 .ppc-endorsement-title {
-	font-size: 1.25rem;
-	line-height: 1.2;
+	font-size: 1rem;
+	line-height: 1.25;
 	box-sizing: border-box;
 	vertical-align: center;
 	margin: 1rem auto 0 auto;
@@ -420,16 +406,7 @@ h6 {
  General Content
 -----------------------------------------**/
 blockquote {
-	font-size: 1em;
-}
-blockquote p {
-	font-size: 1.1em;
-	line-height: 1.5em;
-}
-#content p {
-	font-size: 1.2em;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
+	font-size: 1rem;
 }
 
 #content .fluid-width-video-wrapper {
