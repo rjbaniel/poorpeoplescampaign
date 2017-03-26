@@ -405,6 +405,28 @@ blockquote {
 }
 
 /**-----------------------------------------
+ Blog Home
+-----------------------------------------**/
+#content > .posts > .post {
+	padding: 0;
+	margin: 0 0 3rem 0;
+}
+
+#content .postThumb {
+	/* !important to override bad CSS in parent */
+	margin: 0 0 1.5rem 0 !important;
+}
+
+.post .meta {
+	margin: 0 0 1.5rem 0;
+	font-size: 1em;
+}
+
+.meta + p {
+	margin-bottom: .5rem;
+}
+
+/**-----------------------------------------
  Table of contents
 -----------------------------------------**/
 .ppc-toc {
