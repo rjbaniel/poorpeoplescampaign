@@ -78,7 +78,8 @@ p, li:not(.navigation-list__item), blockquote {
 }
 
 h1, #pageHead h1,
-h2, h3, h4, h5, h6 {
+h2, .posts .post .inside h2,
+h3, h4, h5, h6 {
 	margin: 0;
 	font-family: 'ostrich-sans-black', sans-serif;
 	color: #2E2D26;
@@ -93,6 +94,12 @@ h1 {
 
 h2 {
 	font-size: 2.25rem;
+	line-height: 2.25rem;
+}
+
+.posts .post .inside h2 {
+	/* Due to use of 'important' in parent */
+	font-size: 2.25rem !important;
 	line-height: 2.25rem;
 }
 
