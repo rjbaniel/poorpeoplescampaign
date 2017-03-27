@@ -1,24 +1,14 @@
 <?php get_header(); ?>
 <?php $blog_full_width = of_get_option('ttrust_post_full_width'); ?>
 <?php $bw = ($blog_full_width) ? "full" : "twoThirds"; ?>
-	<div id="pageHead">
-		<div class="inside">
-		<?php $blog_page_id = of_get_option('ttrust_blog_page'); ?>
-		<?php $blog_page = get_page($blog_page_id); ?>
-		<h1><?php echo $blog_page->post_title; ?></h1>
-		<?php $page_description = get_post_meta($blog_page_id, "_ttrust_page_description_value", true); ?>
-		<?php if ($page_description) : ?>
-			<p><?php echo $page_description; ?></p>
-		<?php endif; ?>
-		</div>
-	</div>
 	<div id="middle" class="clearfix">			 
 	<div id="content" class="<?php echo $bw; ?>">
 		<?php while (have_posts()) : the_post(); ?>
 			    
-		<div <?php post_class(); ?>>
-			<h1><?php the_title(); ?></h1>													
+		<div <?php post_class(); ?>>													
+			<h1><?php the_title(); ?></h1>
 			<div class="meta clearfix">
+				<?php $post_show_author = of_get_option('ttrust_post_show_author'); ?>
 				<?php $post_show_date = of_get_option('ttrust_post_show_date'); ?>
 				<?php $post_show_category = of_get_option('ttrust_post_show_category'); ?>
 				<?php $post_show_comments = of_get_option('ttrust_post_show_comments'); ?>
