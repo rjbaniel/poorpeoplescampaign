@@ -51,7 +51,7 @@ function ppc__save_endorsement_meta( $post_id ) {
 	if ( $post->post_type != 'ppc-endorsement' )
 		return;
 
-	if ( ! wp_verify_nonce( $_POST['ppc-endorsement-nonce'], 'save_ppc_endorsement' ) )
+	if ( isset( $_POST['ppc-endorsement-nonce'] ) && ! wp_verify_nonce( $_POST['ppc-endorsement-nonce'], 'save_ppc_endorsement' ) )
 		wp_die( "Sorry, we were unable to verify your request. Please try again" );
 
 	if ( isset( $_POST['ppc-endorsement-url'] ) ) {
