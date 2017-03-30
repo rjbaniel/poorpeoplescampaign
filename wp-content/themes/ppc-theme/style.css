@@ -55,26 +55,31 @@
 	}
 }
 
-p, ul:not(.navigation-list), input, textarea, pre, blockquote {
+p, #content ul, input, textarea, pre, blockquote {
 	margin: 0 0 1.5rem 0;
 	font-size: 1rem;
 	line-height: 1.5;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	color: #424136;
 }
+p, #content li, blockquote {
+	max-width: 32em;
+}
+#content ul {
+	margin-left: 2rem;
+}
+#content p + ul {
+	margin-top: -1rem;
+}
 
 .gcal-event p {
 	margin-bottom: .5rem;
 }
 
-li:not(.navigation-list__item) {
+#content li {
 	margin: 0 0 .5rem 1rem;
 	font-size: 1rem;
 	line-height: 1.5;
-}
-
-p, li:not(.navigation-list__item), blockquote {
-	max-width: 32em;
 }
 
 h1, #pageHead h1,
@@ -384,6 +389,19 @@ h3 {
 	font-family: 'junction-bold';
 }
 
+/**-----------------------------------------
+ Truth Commissions
+-----------------------------------------**/
+.tc-previews__title {
+	margin-bottom: .5rem;
+}
+.tc__detail:not(:last-of-type),
+.tc__detail--excerpt-wrapper > p {
+	margin-bottom: .5rem;
+}
+.tc:not(:last-child) {
+	border-bottom: 1px solid;
+}
 /**-----------------------------------------
  Aesop Components
 -----------------------------------------**/

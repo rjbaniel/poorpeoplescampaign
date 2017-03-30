@@ -1,0 +1,152 @@
+<?php
+function register_truth_commission_cpt() {
+	$labels = array(
+		"name" => "Truth Commissions",
+		"singular_name" => "Truth Commission",
+		"add_new_item" => "Add Truth Commission",
+		"edit_item" => "Edit Truth Commission",
+		"new_item" => "New Truth Commission",
+		"view_item" => "View Truth Commission",
+		"search_items" => "Search Truth Commissions",
+		"not_found" => "No truth commissions found",
+		"not_found_in_trash" => "No truth commissions found in trash",
+	);
+
+	$args = array(
+		"labels" => $labels,
+		"description" => "Truth Commission events",
+		"public" => true,
+		"menu_position" => 15,
+		"supports" => array( 'title', 'editor', 'thumbnail', 'excerpt'),
+		"register_meta_box_cb" => 'ppc__add_tc_metabox'
+	);
+	register_post_type( "truth-commission", $args );
+}
+add_action( 'init', 'register_truth_commission_cpt', 15 );
+
+function ppc__add_tc_metabox() {
+	add_meta_box( 'ppc_tc', 'Truth Commission Info', 'ppc__tc_metabox', 'truth-commission', 'side' );
+}
+
+function ppc__tc_metabox( $post ) {
+	$tc_meta = ppc__get_tc_meta( $post );
+	if ( ! $tc_meta ) {
+		$tc_meta = array(
+			'when' => false,
+			'where' => false,
+			'checked' => false,
+		);
+	}
+	$hide_checked = '';
+	if ( $tc_meta['checked'] )
+		$hide_checked = 'checked';
+	?>
+	<label for="tc_when">When: </label>
+	<input
+		type="text"
+		class="widefat"
+		name="tc_when"
+		id="tc_when"
+		value="<?php echo esc_attr( $tc_meta['when'] ); ?>"
+	>
+	<label for="tc_where">Where: </label>
+	<input
+		type="text"
+		class="widefat"
+		name="tc_where"
+		id="tc_where"
+		value="<?php echo esc_attr( $tc_meta['where'] ); ?>"
+	>
+	<input
+		type="checkbox"
+		name="tc_hide"
+		id="tc_hide"
+		<?php echo esc_attr( $hide_checked ); ?>
+	<label for="tc_hide">Hide this event?</label>
+	<?php
+	wp_nonce_field( 'save_truth_commission', 'truth-commission-nonce' );
+
+}
+
+function ppc__save_tc_meta( $post_id ) {
+	$post = get_post( $post_id );
+	if ( $post->post_type != 'truth-commission' )
+		return;
+
+	if ( isset( $_POST['truth-commission-nonce'] ) && ! wp_verify_nonce( $_POST['truth-commission-nonce'], 'save_truth_commission' ) )
+		wp_die( "Sorry, we were unable to verify your request. Please try again" );
+
+	$meta_text_fields = array( 'tc_when', 'tc_where' );
+	foreach( $meta_text_fields as $field ) {
+		if ( isset( $_POST[$field] ) ) {
+			update_post_meta( $post_id, $field, $_POST[$field] );
+		}
+	}
+	$tc_hide = isset( $_POST['tc_hide'] );
+	update_post_meta( $post_id, 'tc_hide', $tc_hide );
+}
+add_action( 'save_post', 'ppc__save_tc_meta' );
+
+function ppc__tc_previews() {
+	$tcs_query = new WP_Query( array(
+		'post_type' => 'truth-commission',
+		'posts_per_page' => -1,
+	) );
+	if ( $tcs_query->have_posts() ) :
+		ob_start();
+		?>
+
+		<h2 class="tc-previews__title">Upcoming Truth Commission Events</h2>
+		<?php
+		while( $tcs_query->have_posts() ) :
+			$tcs_query->the_post();
+			global $post;
+			ppc__tc_preview( $post->ID );
+		endwhile;
+		wp_reset_postdata();
+		return ob_get_clean();
+	endif;
+}
+
+function ppc__tc_preview( $tc_id ) {
+	$tc_meta = ppc__get_tc_meta( $tc_id );
+	if ( $tc_meta['hide'] )
+		return;
+	?>
+	<article class="tc">
+		<h3 class="tc__title"><?php the_title(); ?></h3>
+		<p class="tc__detail tc__detail--when"><strong>When: </strong><?php echo esc_html( $tc_meta['when'] ); ?></p>
+		<p class="tc__detail tc__detail--where"><strong>When: </strong><?php echo esc_html( $tc_meta['where'] ); ?></p>
+		<div class="tc__detail tc__detail--excerpt-wrapper">
+		<?php the_excerpt(); ?>
+		</div>
+		<a href="<?php the_permalink(); ?>">Learn more</a>
+	</article>
+	<?php
+}
+
+function ppc__get_tc_meta( $tc ) {
+	if ( ! $tc instanceof WP_Post ) {
+		if ( is_int( $tc ) ) {
+			$tc = get_post( $tc_id );
+			if ( ! $tc ) {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	$tc_id = $tc->ID;
+	return array(
+		'when' => get_post_meta( $tc_id, 'tc_when', true ),
+		'where' => get_post_meta( $tc_id, 'tc_where', true ),
+		'hide' => get_post_meta( $tc_id, 'tc_hide', true ),
+	);
+}
+
+function register_tcs_shortcode() {
+	add_shortcode( 'truth-commissions', 'ppc__tc_previews' );
+}
+add_action( 'init', 'register_tcs_shortcode' , 15 );
+
+?>

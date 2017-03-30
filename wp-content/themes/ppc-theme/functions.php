@@ -23,5 +23,6 @@ function ppc__includes() {
 	require_once( __DIR__ . '/includes/home-sections.php' );
 	require_once( __DIR__ . '/includes/navigation.php' );
 	require_once( __DIR__ . '/includes/endorsements.php' );
+	require_once( __DIR__ . '/includes/truth-commissions.php' );
 }
 add_action( 'init', 'ppc__includes' );
