@@ -56,14 +56,18 @@
 }
 
 p, #content ul, input, textarea, pre, blockquote,
-.content-section {
+.content-section,
+.aesop-image-component .aesop-image-component-caption {
 	margin: 0 0 1.5rem 0;
 	font-size: 1rem;
 	line-height: 1.5;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	color: #424136;
 }
-p, #content li, blockquote {
+.aesop-image-component .aesop-image-component-caption {
+	color: rgb(100, 100, 100);
+}
+p, #content li, blockquote, figcaption {
 	max-width: 32em;
 }
 #content ul {
@@ -118,13 +122,6 @@ h2 {
 h3 {
 	font-size: 1.5rem;
 	line-height: 1.75rem;
-}
-
-a:link {
-	text-decoration: underline;
-}
-a:hover, a:focus, a:active {
-	text-decoration: none;
 }
 
 /**-----------------------------------------
