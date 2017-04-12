@@ -47,7 +47,7 @@
 }
 
 :root {
-	font-size: 16px;
+	font-size: 17px;
 }
 @media(min-width: 735px) {
 	:root {
@@ -55,7 +55,8 @@
 	}
 }
 
-p, #content ul, input, textarea, pre, blockquote {
+p, #content ul, input, textarea, pre, blockquote,
+.content-section {
 	margin: 0 0 1.5rem 0;
 	font-size: 1rem;
 	line-height: 1.5;
@@ -95,6 +96,12 @@ h1 {
 	max-width: 12em;
 	font-size: 3.375rem;
 	line-height: 3.5rem;
+	word-spacing: -30%;
+}
+@media(min-width: 735px) {
+	h1 {
+		word-spacing: 0;
+	}
 }
 
 h2 {
@@ -113,6 +120,13 @@ h3 {
 	line-height: 1.75rem;
 }
 
+a:link {
+	text-decoration: underline;
+}
+a:hover, a:focus, a:active {
+	text-decoration: none;
+}
+
 /**-----------------------------------------
  Container
 -----------------------------------------**/
@@ -122,7 +136,7 @@ h3 {
 
 #pageHead {
 	padding: 0;
-	margin: 0 30px;
+	margin: 0 1rem;
 }
 
 #pageHead .inside {
@@ -137,6 +151,10 @@ h3 {
 	#top {
 		margin-bottom: 4rem;
 	}
+}
+
+#middle {
+	padding: 0 1rem 1rem;
 }
 
 /**-----------------------------------------
@@ -262,12 +280,6 @@ h3 {
 	font-family: 'ostrich-sans-black';
 	letter-spacing: .025em;
 	color: white;
-}
-@media(min-width: 40em) {
-	.home-section__title-wrapper {
-		padding-top: 1rem;
-		padding-bottom: .25rem;
-	}
 }
 
 /**-----------------------------------------
@@ -395,12 +407,13 @@ h3 {
 .tc-previews__title {
 	margin-bottom: .5rem;
 }
-.tc__detail:not(:last-of-type),
-.tc__detail--excerpt-wrapper > p {
+.tc__detail,
+.tc__detail--excerpt-wrapper > p,
+.tc__image {
 	margin-bottom: .5rem;
 }
-.tc:not(:last-child) {
-	border-bottom: 1px solid;
+.tc__image {
+	max-height: 40vh;
 }
 /**-----------------------------------------
  Aesop Components
@@ -542,25 +555,7 @@ hr {
 	}
 }
 
-@media (max-width: 850px) {
-	#header #homeBanner #bannerText .main {
-		font-size: 2.6em;
-	}
-	#header #homeBanner #bannerText .secondary {
-		font-size: 1.1em;
-		padding: 20px;
-	}
-}
-
 @media (max-width: 950px) {
-	#content .aesop-image-component .aesop-image-component-caption {
-		font-size: .9em;
-	}
-
-	#content p {
-		font-size: 1em;
-	}
-
 	.ppc-toc {
 		display: none;
 	}

@@ -34,12 +34,13 @@ function ppc__tc_metabox( $post ) {
 		$tc_meta = array(
 			'when' => false,
 			'where' => false,
-			'checked' => false,
+			'past'	=> false,
+			'hide' => false,
 		);
 	}
-	$hide_checked = '';
-	if ( $tc_meta['checked'] )
-		$hide_checked = 'checked';
+	$hide_checked = $tc_meta['hide'] ? 'checked' : '';
+	$past_checked = $tc_meta['past'] ? 'checked' : '';
+
 	?>
 	<label for="tc_when">When: </label>
 	<input
@@ -62,7 +63,15 @@ function ppc__tc_metabox( $post ) {
 		name="tc_hide"
 		id="tc_hide"
 		<?php echo esc_attr( $hide_checked ); ?>
-	<label for="tc_hide">Hide this event?</label>
+	>
+	<label for="tc_hide">Hide this event?</label><br>
+	<input
+		type="checkbox"
+		name="tc_past"
+		id="tc_past"
+		<?php echo esc_attr( $past_checked ); ?>
+	>
+	<label for="tc_past">Is this event past?</label>
 	<?php
 	wp_nonce_field( 'save_truth_commission', 'truth-commission-nonce' );
 
@@ -82,8 +91,11 @@ function ppc__save_tc_meta( $post_id ) {
 			update_post_meta( $post_id, $field, $_POST[$field] );
 		}
 	}
-	$tc_hide = isset( $_POST['tc_hide'] );
-	update_post_meta( $post_id, 'tc_hide', $tc_hide );
+
+	$meta_checkboxes = array( 'tc_hide', 'tc_past' );
+	foreach( $meta_checkboxes as $field ) {
+		update_post_meta( $post_id, $field, isset( $_POST[$field] ) );
+	}
 }
 add_action( 'save_post', 'ppc__save_tc_meta' );
 
@@ -91,19 +103,42 @@ function ppc__tc_previews() {
 	$tcs_query = new WP_Query( array(
 		'post_type' => 'truth-commission',
 		'posts_per_page' => -1,
+		'meta_key'	=> 'tc_past',
+		'orderby' => 'meta_value_binary',
+
 	) );
 	if ( $tcs_query->have_posts() ) :
 		ob_start();
-		?>
+		
+		// If we have "past events", start with that header
+		$has_past_events = get_post_meta( $tcs_query->posts[0]->ID, 'tc_past', true );
+		if ( $has_past_events ) :
+			?>
+			<h2 class="tc-previews__title">Past Truth Commission Events</h2>
+			<?php
+			$in_upcoming_events = false;
+		else :
+			?>
+			<h2 class="tc-previews__title">Upcoming Truth Commission Events</h2>
+			<?php
+		endif;
 
-		<h2 class="tc-previews__title">Upcoming Truth Commission Events</h2>
-		<?php
 		while( $tcs_query->have_posts() ) :
 			$tcs_query->the_post();
 			global $post;
+			// If we started with past events, we need to output the "Upcoming Events" header before the first
+			// event that isn't past.
+			if ( $has_past_events && !$in_upcoming_events && !get_post_meta( $post->ID, 'tc_past', true ) ) :
+				?>
+				<h2 class="tc-previews__title">Upcoming Truth Commission Events</h2>
+				<?php
+				$in_upcoming_events = true;
+			endif;
 			ppc__tc_preview( $post->ID );
 		endwhile;
 		wp_reset_postdata();
+		?>
+		<?php
 		return ob_get_clean();
 	endif;
 }
@@ -116,7 +151,16 @@ function ppc__tc_preview( $tc_id ) {
 	<article class="tc">
 		<h3 class="tc__title"><?php the_title(); ?></h3>
 		<p class="tc__detail tc__detail--when"><strong>When: </strong><?php echo esc_html( $tc_meta['when'] ); ?></p>
-		<p class="tc__detail tc__detail--where"><strong>When: </strong><?php echo esc_html( $tc_meta['where'] ); ?></p>
+		<p class="tc__detail tc__detail--where"><strong>Where: </strong><?php echo esc_html( $tc_meta['where'] ); ?></p>
+		<?php
+			if ( has_post_thumbnail() ) :
+				?>
+				<div class="tc__image-container">
+					<a href="<?php the_permalink() ?>"><img class="tc__image" src="<?php echo esc_url( the_post_thumbnail_url( 'large' ) ); ?>"></a>
+				</div>
+				<?php
+			endif;
+		?>
 		<div class="tc__detail tc__detail--excerpt-wrapper">
 		<?php the_excerpt(); ?>
 		</div>
@@ -137,10 +181,12 @@ function ppc__get_tc_meta( $tc ) {
 		}
 	}
 	$tc_id = $tc->ID;
+
 	return array(
 		'when' => get_post_meta( $tc_id, 'tc_when', true ),
 		'where' => get_post_meta( $tc_id, 'tc_where', true ),
 		'hide' => get_post_meta( $tc_id, 'tc_hide', true ),
+		'past' => get_post_meta( $tc_id, 'tc_past', true )
 	);
 }
 
