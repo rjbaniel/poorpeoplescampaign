@@ -19,6 +19,7 @@ if ( ! function_exists( 'aesop_chapter_shortcode' ) ) {
 			'full'  	=> '',
 			'bgcolor'   => '',
 			'minheight' => '260px',
+			'maxheight' => '100%',
 			'fixed_height' => '',
 			'force_fullwidth' => 'off',
 			'overlay_content'   => '',
@@ -46,11 +47,11 @@ if ( ! function_exists( 'aesop_chapter_shortcode' ) ) {
 		}
 
 		if ('img' == $atts['bgtype'] && $atts['img']) {
-			$img_style     =  sprintf( 'style="background:url(\'%s\');%s min-height:%s"', esc_url( $atts['img'] ), $styles, $atts['minheight'] );		
+			$img_style     =  sprintf( 'style="background:url(\'%s\');%s min-height:%s;max-height:%s;"', esc_url( $atts['img'] ), $styles, $atts['minheight'],$atts['maxheight'] );		
 		} else {
-			$img_style     =  'style="height:auto;min-height:'.$atts['minheight'].';"';
+			$img_style     =  'style="height:auto;min-height:'.$atts['minheight'].';max-height:'.$atts['maxheight'].';"';
 			if ('color' == $atts['bgtype'] && $atts['bgcolor']) {
-				$img_style = 'style="min-height:'.$atts['minheight'].';background-color: '.$atts['bgcolor'].';"';
+				$img_style = 'style="min-height:'.$atts['minheight'].';max-height:'.$atts['maxheight'].';background-color: '.$atts['bgcolor'].';"';
 				$atts['full'] ='off';
 			} 
 		}
@@ -66,7 +67,8 @@ if ( ! function_exists( 'aesop_chapter_shortcode' ) ) {
 
 ?>
 			<div id="chapter-unique-<?php echo $unique;?>" <?php echo aesop_component_data_atts( 'chapter', $unique, $atts );?> class="aesop-article-chapter-wrap default-cover <?php echo $video_chapter_class;?> aesop-component <?php echo $img_style_class;?> <?php echo $full_class;?> " 
-			    <?php echo aesop_revealfx_set($atts) ? 'style="visibility:hidden;"': null ?>
+			    <?php echo aesop_revealfx_set($atts) ? 'style="visibility:hidden;"': null ?> 
+			    data-title="<?php echo esc_attr( $atts['title'] );?>"
 			>
 
 				<?php do_action( 'aesop_chapter_inside_top', $atts, $unique ); // action ?>
@@ -74,7 +76,7 @@ if ( ! function_exists( 'aesop_chapter_shortcode' ) ) {
 				<div class="aesop-article-chapter clearfix" <?php echo $img_style;?> >
 
 				    <?php if (empty($atts['overlay_content'])) { ?>
-					<h2 class="aesop-cover-title" itemprop="title" data-title="<?php echo esc_attr( $atts['title'] );?>">
+					<h2 class="aesop-cover-title" itemprop="title">
 						<span><?php echo esc_html( $atts['title'] );?></span>
 
 						<?php if ( $atts['subtitle'] ) { ?>

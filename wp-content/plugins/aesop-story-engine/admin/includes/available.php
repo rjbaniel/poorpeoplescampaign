@@ -321,8 +321,14 @@ if ( ! function_exists( 'aesop_shortcodes' ) ) {
 					'width'   => array(
 						'type'  => 'text_small',
 						'default'  => '100%',
-						'desc'   => __( 'Width of Component', 'aesop-core' ),
+						'desc'   => __( 'Width of Content', 'aesop-core' ),
 						'tip'  => __( 'You can enter the size as <code>40%</code> or <code>500px</code>. Enter the word <code>content</code> to restrict the width to that of the main text.', 'aesop-core' )
+					),
+					'component_width'   => array(
+						'type'  => 'text_small',
+						'default'  => '100%',
+						'desc'   => __( 'Width of Component', 'aesop-core' ),
+						'tip'  => __( 'You can enter the size as <code>40%</code> or <code>500px</code>.', 'aesop-core' )
 					),
 					'height'   => array(
 						'type'  => 'text_small',
@@ -535,6 +541,12 @@ if ( ! function_exists( 'aesop_shortcodes' ) ) {
 						'default'  => '',
 						'desc'   => __( 'Minimum Height', 'aesop-core' ),
 						'tip'  => __( 'You can enter the minimum height in number of pixels like <code>300px</code>.', 'aesop-core' )
+					),
+					'maxheight'    => array(
+						'type'  => 'text_small',
+						'default'  => '',
+						'desc'   => __( 'Maximum Height', 'aesop-core' ),
+						'tip'  => __( 'You can enter the maximum height in number of pixels like <code>300px</code> or <code>50%</code>. 100% by default.', 'aesop-core' )
 					),
 					'overlay_content'     => array(
 						'type'  => 'text_area',
@@ -886,12 +898,6 @@ if ( ! function_exists( 'aesop_shortcodes' ) ) {
 						'desc'   => __( 'Caption', 'aesop-core' ),
 						'tip'  => __( 'Optionally display a caption below the video.', 'aesop-core' )
 					),
-					'overlay_content'     => array(
-						'type'  => 'text_area',
-						'default'  => '',
-						'desc'   => __( 'Overlay Content', 'aesop-core' ),
-						'tip'  => __( 'Text or HTML content to be overlayed. You can use tags like H2, H3 etc.', 'aesop-core' )
-					),
 					'hosted'   => array(
 						'type'  => 'media_upload',
 						'default'  => '',
@@ -911,14 +917,14 @@ if ( ! function_exists( 'aesop_shortcodes' ) ) {
 							)
 						),
 						'default'  => 'on',
-						'desc'   => __( 'Disable video on Mobile Devices.  (only if using <em>self</em> as video source)', 'aesop-core' ),
-						'tip'  => __( 'Disable video on Mobile Devices. Will display the Poster Frame if it is set.', 'aesop-core' )
+						'desc'   => __( 'Disable video on Mobile Devices.', 'aesop-core' ),
+						'tip'  => __( 'Disable video on Mobile Devices. Must specify the Poster Frame image.', 'aesop-core' )
 					),
 					'poster_frame'  => array(
 						'type'  => 'media_upload',
 						'default'  => '',
-						'desc'   => __( 'Poster Frame (only if using <em>self</em> as video source)', 'aesop-core' ),
-						'tip'  => __( 'Image to display before the video plays. Click <em>Select Media</em> to open the WordPress Media Library.', 'aesop-core' )
+						'desc'   => __( 'Poster Frame', 'aesop-core' ),
+						'tip'  => __( 'Image to display before the video plays if the target is self. Or the image to display if the video is disabled for mobile. Click <em>Select Media</em> to open the WordPress Media Library.', 'aesop-core' )
 					),
 					'loop'    => array(
 						'type'  => 'select',
@@ -933,7 +939,7 @@ if ( ! function_exists( 'aesop_shortcodes' ) ) {
 							)
 						),
 						'default'  => 'on',
-						'desc'   => __( 'Video Loop (only if using <em>self</em> as video source)', 'aesop-core' ),
+						'desc'   => __( 'Video Loop', 'aesop-core' ),
 						'tip'  => __( 'Enable the video to loop.', 'aesop-core' )
 					),
 					'autoplay'    => array(
@@ -949,7 +955,7 @@ if ( ! function_exists( 'aesop_shortcodes' ) ) {
 							)
 						),
 						'default'  => 'on',
-						'desc'   => __( 'Autoplay (only if using <em>self</em> as video source)', 'aesop-core' ),
+						'desc'   => __( 'Autoplay', 'aesop-core' ),
 						'tip'  => __( 'Should the video automatically start playing.', 'aesop-core' )
 					),
 					'controls'    => array(
@@ -965,8 +971,8 @@ if ( ! function_exists( 'aesop_shortcodes' ) ) {
 							)
 						),
 						'default'  => 'off',
-						'desc'   => __( 'Video Controls (only if using <em>self</em> as video source)', 'aesop-core' ),
-						'tip'  => __( 'Hide or show the controls for the self-hosted video player.', 'aesop-core' )
+						'desc'   => __( 'Video Controls', 'aesop-core' ),
+						'tip'  => __( 'Hide or show the controls for the video player.', 'aesop-core' )
 					),
 					'viewstart'  => array(
 						'type'  => 'select',
@@ -981,7 +987,7 @@ if ( ! function_exists( 'aesop_shortcodes' ) ) {
 							)
 						),
 						'default'  => 'off',
-						'desc'   => __( 'Start Video When in View (only if using <em>self</em> as video source)', 'aesop-core' ),
+						'desc'   => __( 'Start Video When in View', 'aesop-core' ),
 						'tip'  => __( 'When set to <em>on</em> the video will start playing automatically once scrolled into view.', 'aesop-core' )
 					),
 					'viewend'  => array(
@@ -997,9 +1003,15 @@ if ( ! function_exists( 'aesop_shortcodes' ) ) {
 							)
 						),
 						'default'  => 'off',
-						'desc'   => __( 'Stop Video When Out of View (only if using <em>self</em> as video source)', 'aesop-core' ),
+						'desc'   => __( 'Stop Video When Out of View', 'aesop-core' ),
 						'tip'  => __( 'Used together with the option above, this option when set to <em>on</em> will stop the video player from playing once scrolled out of view.', 'aesop-core' )
-					)
+					),
+					'overlay_content'     => array(
+						'type'  => 'text_area',
+						'default'  => '',
+						'desc'   => __( 'Overlay Content', 'aesop-core' ),
+						'tip'  => __( 'Text or HTML content to be overlayed. You can use tags like H2, H3 etc.', 'aesop-core' )
+					),
 					
 				),
 				'desc'     => __( 'Responsive video component with alignment and optional caption.', 'aesop-core' ),
