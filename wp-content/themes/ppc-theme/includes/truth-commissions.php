@@ -100,47 +100,54 @@ function ppc__save_tc_meta( $post_id ) {
 add_action( 'save_post', 'ppc__save_tc_meta' );
 
 function ppc__tc_previews() {
-	$tcs_query = new WP_Query( array(
+	$upcoming_tcs_query = new WP_query( array(
 		'post_type' => 'truth-commission',
 		'posts_per_page' => -1,
 		'meta_key'	=> 'tc_past',
-		'orderby' => 'meta_value_binary',
-
+		'meta_value' => false,
 	) );
-	if ( $tcs_query->have_posts() ) :
-		ob_start();
-		
-		// If we have "past events", start with that header
-		$has_past_events = get_post_meta( $tcs_query->posts[0]->ID, 'tc_past', true );
-		if ( $has_past_events ) :
-			?>
-			<h2 class="tc-previews__title">Past Truth Commission Events</h2>
-			<?php
-			$in_upcoming_events = false;
-		else :
-			?>
-			<h2 class="tc-previews__title">Upcoming Truth Commission Events</h2>
-			<?php
-		endif;
+	$past_tcs_query = new WP_Query( array(
+		'post_type' => 'truth-commission',
+		'posts_per_page' => -1,
+		'meta_key'	=> 'tc_past',
+		'meta_value' => true,
+	) );
 
-		while( $tcs_query->have_posts() ) :
-			$tcs_query->the_post();
+	$return = '';
+	if ( $upcoming_tcs_query->have_posts() ) :
+		ob_start();
+		?>
+		<h2 class="tc-previews__title">Upcoming Truth Commission Events</h2>
+		<?php
+
+		while( $upcoming_tcs_query->have_posts() ) :
+			$upcoming_tcs_query->the_post();
 			global $post;
-			// If we started with past events, we need to output the "Upcoming Events" header before the first
-			// event that isn't past.
-			if ( $has_past_events && !$in_upcoming_events && !get_post_meta( $post->ID, 'tc_past', true ) ) :
-				?>
-				<h2 class="tc-previews__title">Upcoming Truth Commission Events</h2>
-				<?php
-				$in_upcoming_events = true;
-			endif;
 			ppc__tc_preview( $post->ID );
 		endwhile;
 		wp_reset_postdata();
 		?>
 		<?php
-		return ob_get_clean();
+		$return .= ob_get_clean();
 	endif;
+	if ( $past_tcs_query->have_posts() ) :
+		ob_start();
+		?>
+		<h2 class="tc-previews__title">Past Truth Commission Events</h2>
+		<?php
+
+		while( $past_tcs_query->have_posts() ) :
+			$past_tcs_query->the_post();
+			global $post;
+			ppc__tc_preview( $post->ID );
+		endwhile;
+		wp_reset_postdata();
+		?>
+		<?php
+		$return .= ob_get_clean();
+	endif;
+
+	return $return;
 }
 
 function ppc__tc_preview( $tc_id ) {
