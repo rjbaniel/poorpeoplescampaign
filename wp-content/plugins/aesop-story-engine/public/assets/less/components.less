@@ -286,7 +286,7 @@
 
         .wp-video-shortcode {
             width:100% !important;
-            height:100% !important; // overridin gjs
+            //height:100% !important; // overridin gjs
         }
 
     }
@@ -343,7 +343,7 @@
     .wp-video-shortcode,
     .wp-video {
         width:100% !important;
-        height:100% !important;
+        //height:100% !important;
         max-width:100% !important;
 
         .mejs-overlay {
@@ -359,11 +359,14 @@
     }
 }
 
-
 // video
 .aesop-video-chapter {
     .aesop-article-chapter {
      //   height: auto !important;
+	      h2.aesop-cover-title {
+		      z-index:1;
+			  max-width:100%;
+		  }
     }
 	.aesop-cover-title {
           position:absolute;

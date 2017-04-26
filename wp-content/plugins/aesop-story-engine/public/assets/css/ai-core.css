@@ -269,7 +269,6 @@
 }
 .aesop-video-component .self .wp-video-shortcode {
   width: 100% !important;
-  height: 100% !important;
 }
 .aesop-quote-component {
   -webkit-transform: translateZ(0);
@@ -311,7 +310,6 @@
 .aesop-article-chapter-wrap .wp-video-shortcode,
 .aesop-article-chapter-wrap .wp-video {
   width: 100% !important;
-  height: 100% !important;
   max-width: 100% !important;
 }
 .aesop-article-chapter-wrap .wp-video-shortcode .mejs-overlay,
@@ -325,6 +323,10 @@
 }
 .aesop-article-chapter-wrap.aesop-chapter-full .aesop-article-chapter {
   height: 600px;
+}
+.aesop-video-chapter .aesop-article-chapter h2.aesop-cover-title {
+  z-index: 1;
+  max-width: 100%;
 }
 .aesop-video-chapter .aesop-cover-title {
   position: absolute;
