@@ -93,13 +93,13 @@ h3, h4, h5, h6 {
 	margin: 0;
 	font-family: 'ostrich-sans-black', sans-serif;
 	color: #2E2D26;
+	line-height: 1.2;
 }
 
 #pageHead h1,
 h1 {
 	max-width: 12em;
-	font-size: 3.375rem;
-	line-height: 3.5rem;
+	font-size: 2.25rem;
 	word-spacing: -30%;
 }
 @media(min-width: 735px) {
@@ -109,47 +109,36 @@ h1 {
 }
 
 h2 {
-	font-size: 2.25rem;
-	line-height: 2.25rem;
+	font-size: 1.75rem;
 }
 
 .posts .post .inside h2 {
 	/* Due to use of 'important' in parent */
 	font-size: 2.25rem !important;
-	line-height: 2.25rem;
 }
 
 h3 {
-	font-size: 1.5rem;
-	line-height: 1.75rem;
+	font-size: 1.25rem;
 }
 
+@media(min-width: 50rem) {
+	#pageHead h1,
+	h1 {
+		font-size: 3.375rem;
+	}
+	h2 {
+		font-size: 2.25rem;
+	}
+	h3 {
+		font-size: 1.5rem;
+	}
+}
 /**-----------------------------------------
  Container
 -----------------------------------------**/
 #container {
-	max-width: 75rem;
+	background-color: #fdfdfd;
 }
-
-#pageHead {
-	padding: 0;
-	margin: 0 1rem;
-}
-
-#pageHead .inside {
-	padding: 0;
-	border-bottom: 0;
-}
-
-#top {
-	margin-bottom: 2rem;
-}
-@media(min-width:76rem) {
-	#top {
-		margin-bottom: 4rem;
-	}
-}
-
 #middle {
 	padding: 0 1rem 1rem;
 }
@@ -157,10 +146,10 @@ h3 {
 /**-----------------------------------------
  Header
 -----------------------------------------**/
-#header .top .inside {
-	padding: 5px 10px;
+#top {
+	background-color: #4384B5;
+	margin-bottom: 1rem;
 }
-
 /**-----------------------------------------
  # Main Nav
 -----------------------------------------**/
@@ -173,6 +162,7 @@ h3 {
 }
 .navigation-list__home-logo {
 	margin: 0 auto;
+	max-width: 20rem;
 }
 
 /* Bar that holds the non-logo nav items */
@@ -186,15 +176,18 @@ h3 {
 	max-width: 20rem;
 	font-family: 'junction-bold';
 }
-.navigation-list__item:not(.navigation-list__item--home):not(:last-child) {
+.navigation-list__item:not(.navigation-list__item--home):nth-child(-n+2) {
 	border-bottom: .15rem solid white;
+}
+.navigation-list__item:nth-child(n+4) {
+	display: none;
 }
 .navigation-list__item-link {
 	display: block;
 	color: white;
 }
 .navigation-list__not-home .navigation-list__item-link {
-	padding: 1rem 0;
+	padding: .75rem 0;
 }
 .navigation-list__item-link:hover,
 .navigation-list__item-link:focus {
@@ -205,9 +198,15 @@ h3 {
 	outline: .15rem dotted white;
 }
 
-@media (min-width: 32rem) {
+@media (min-width: 30rem) {
+	#top {
+		margin-bottom: 0;
+	}
 	.navigation-list__not-home {
 		display: flex;
+	}
+	.navigation-list__item:nth-child(n+4) {
+		display: block;
 	}
 	.navigation-list__item-link {
 		font-size: 1rem;
@@ -220,17 +219,26 @@ h3 {
 	}
 }
 
-@media (min-width: 56rem) {
+@media (min-width: 50rem) {
 	.navigation-list {
 		display: flex;
 		justify-content: space-between;
+		max-width: 75rem;
+		margin: 0 auto;
+		padding: .5rem 0;
+	}
+	.navigation-list__item--home {
+		margin-left: 1rem;
+	}
+	.navigation-list__home-logo {
+		border: 1px solid;
 	}
 	.navigation-list__not-home {
 		margin-top: 0;
 	}
 	.navigation-list__item:not(.navigation-list__item--home) {
 		position: relative;
-		margin: 0 1rem;
+		margin: 0 .5rem;
 		max-width: 20rem;
 	}
 	.navigation-list__not-home .navigation-list__item-link {
@@ -240,14 +248,11 @@ h3 {
 		transform: translateY(50%);
 	}
 }
-
-@media (min-width: 76rem) {
-	.navigation-list {
-		margin-top: 1rem;
-		background-color: white;
+@media (min-width: 86rem) {
+	.navigation-list__item--home {
+		margin-left: 0;
 	}
 }
-
 /**-----------------------------------------
  Home Page
 -----------------------------------------**/
@@ -435,6 +440,45 @@ h3 {
 /**-----------------------------------------
  General Content
 -----------------------------------------**/
+#pageHead {
+	position: relative;
+	padding: 0;
+	margin-bottom: 2rem;
+}
+#pageHead .page-head__title {
+	position: relative;
+	max-width: 80%;
+	top: -3rem;
+	padding: 1rem 1rem .25rem;
+	margin: 0 auto -3rem;
+	color: white;
+	background-color: rgba(80, 80, 80, .8);
+}
+.page-head__image {
+	width: 100%;
+	max-height: 400px;
+	object-fit: cover;
+}
+
+@media (min-width: 30rem) {
+	#pageHead .page-head__title {
+		position: absolute;
+		left: 1rem;
+		top: 1.5rem;
+	}
+}
+@media (min-width: 50rem) {
+	#pageHead .page-head__title {
+		max-width: 12em;
+	}
+}
+@media (min-width: 86rem) {
+	#pageHead .page-head__title {
+	left: calc((100% - 75rem) / 2);
+}
+#content {
+	float: none;
+}
 blockquote {
 	font-size: 1rem;
 }
