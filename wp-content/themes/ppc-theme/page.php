@@ -2,7 +2,8 @@
 <?php if(!is_front_page()):?>
 	<div class="page-head" id="pageHead">
 		<?php if ( has_post_thumbnail( get_the_id() ) ) : ?>
-			<img class="page-head__image" src="<?php the_post_thumbnail_url(); ?>">
+			<img class="page-head__image" src="<?php 
+the_post_thumbnail_url( 'full' ); ?>">
 			<h1 class="page-head__title"><?php the_title(); ?></h1>
 		<?php else : ?>
 			<h1 class="page-head__title page-head__title--no-image"><?php the_title(); ?></h1>

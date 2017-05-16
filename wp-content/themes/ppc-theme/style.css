@@ -199,7 +199,7 @@ h3 {
 }
 
 @media (min-width: 35rem) {
-	#top {
+	body:not(.single-post) #top {
 		margin-bottom: 0;
 	}
 	.navigation-list__not-home {
@@ -566,6 +566,9 @@ h3 {
 	position: relative;
 	padding: 0;
 	margin-bottom: 2rem;
+}
+#pageHead.page-head--blog {
+	margin-top: 1rem;
 }
 #pageHead > .inside {
 	padding: .5rem 1rem;
