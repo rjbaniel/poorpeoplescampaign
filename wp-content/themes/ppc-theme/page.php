@@ -1,8 +1,12 @@
 <?php get_header(); ?>		
 <?php if(!is_front_page()):?>
 	<div class="page-head" id="pageHead">
-		<img class="page-head__image" src="<?php the_post_thumbnail_url(); ?>">
-		<h1 class="page-head__title"><?php the_title(); ?></h1>
+		<?php if ( has_post_thumbnail( get_the_id() ) ) : ?>
+			<img class="page-head__image" src="<?php the_post_thumbnail_url(); ?>">
+			<h1 class="page-head__title"><?php the_title(); ?></h1>
+		<?php else : ?>
+			<h1 class="page-head__title page-head__title--no-image"><?php the_title(); ?></h1>
+		<?php endif; ?>
 	</div>
 <?php endif; ?>	
 	<div id="middle" class="clearfix">

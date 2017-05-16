@@ -4,10 +4,16 @@
 */
 ?>
 <?php get_header(); ?>
-	
 <div class="home-content">
+	<div class="home-hero" style="background-image: url(<?php the_post_thumbnail_url(); ?>);">
+		<h1 class="home-hero__title">
+			The New Poor People's Campaign
+		</h1>		
+		<img class="home-hero__image" src="<?php the_post_thumbnail_url(); ?>">
+		<p class="home-hero__text">Fifty years ago, Rev. Dr. King called for a Poor People's Campaign. Poor people from all across the country, of all races, started coming together to wage a campaign against racism, war, and poverty. Today, organizations of the poor are taking up that call again, building a New Poor People's Campaign for today.</p>
+	</div>
 <?php
-	get_template_part( 'home', 'video' );
+	get_template_part( 'home', 'featured' );
 	ppc__home_section(
 		'featured-pages',
 		'Learn more about the Poor People\'s Campaign', 

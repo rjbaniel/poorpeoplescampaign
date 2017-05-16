@@ -257,13 +257,85 @@ h3 {
  Home Page
 -----------------------------------------**/
 .home-content {
-	padding: 1rem;
 	background-color: #f1f0f0;
 }
+.home-hero {
+	position: relative;
+	height: 50vh;
+	background-size: cover;
+	background-position: center center;
+}
+.home-hero__title {
+	display: none;
+}
+@supports (object-fit: cover) {
+	.home-hero {
+		height: auto;
+		background: transparent !important;
+	}
+	.home-hero__image {
+		width: 100%;
+		max-height: 50vh;
+		object-fit: cover;
+	}
+}
+.home-hero__image {
+	margin-top: -1rem;
+}
+.home-hero__text {
+	position: relative;
+	top: -7rem;
+	margin: 0 1rem -7rem;
+	padding: 1rem;
+	color: white;
+	background-color: rgba(40, 40, 40, .9);
+}
+@media (min-width: 30rem) {
+	.home-hero__title {
+		display: block;
+		position: absolute;
+		padding: 1rem 1rem .25rem;
+		left: 1rem;
+		right: 1rem;
+		top: 1.5rem;
+		color: white;
+		background-color: rgba(40, 40, 40, .9);
+	}
+	.home-hero__image {
+		margin-top: 0;
+	}
+}
+@media (min-width: 40rem) {
+	.home-hero__title {
+		max-width: 12em;
+	}
+	.home-hero__text {
+		position: absolute;
+		top: 9rem;
+		margin: 0 auto;
+		left: 1rem;
+	}
+}
+@media (min-width: 86rem) {
+	.home-hero__title,
+	.home-hero__text {
+		left: calc((100% - 75rem) / 2);
+	}
+}
+
 
 /**-----------------------------------------
  # Home Page Sections
 -----------------------------------------**/
+.home-section {
+	padding: 0 1rem;
+}
+@media(min-width: 86rem) {
+	.home-section {
+		padding: 0;
+		max-width: 75rem;
+	}
+}
 .home-section {
 	margin: 2rem auto;
 }
@@ -288,9 +360,10 @@ h3 {
  ## Home Page Collections
 -----------------------------------------**/
 .home-section__item:not(:last-child) {
-	border-bottom: .25rem dashed #b23535;
+	margin-bottom: 1.5rem;
 }
 .home-section__item-title {
+	margin-bottom: .5rem;
 	font-family: junction-bold;
 }
 .home-section__item-image {
@@ -336,42 +409,91 @@ h3 {
 	}
 }
 /**-----------------------------------------
- ## Featured Video
+ ## Featured Content
 -----------------------------------------**/
-.home-video__container {
+.home-featured__text {
+	box-sizing: border-box;
+	width: 100%;
+	display: inline-block;
+	padding: 1rem;
+	color: white;
+	background-color: #b23535;
+}
+.home-featured__text > * {
+	font-size: 1.25rem;
+	color: white;
+}
+.home-featured__text a {
+	color: white;
+	text-decoration: underline;
+}
+.home-featured__text a:hover,
+.home-featured__text a:focus,
+.home-featured__text a:active {
+	color: white;
+	text-decoration: none;
+}
+.home-featured__text p:last-child {
+	margin-bottom: 0;
+}
+.home-featured__container {
 	max-width: 100vh;
+	padding-top: 1rem;
 	margin: 0 auto;
 }
-.home-video__responsive-wrapper {
+.home-featured__responsive-wrapper {
 	position: relative;
 	height: 0;
 	padding-bottom: 56.25%;
 }
-.home-video__responsive-wrapper::before{
+.home-featured__responsive-wrapper::before{
 	content: '';
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	box-shadow: -3px 3px 3px;
+	box-shadow: -3px 3px 3px rgba(40, 40, 40, .9);
 	opacity: 0;
 	transition: opacity .3s ease-in;
 }
-.home-video__responsive-wrapper:hover::before,
-.home-video__responsive-wrapper:focus::before {
+.home-featured__responsive-wrapper:hover::before,
+.home-featured__responsive-wrapper:focus::before {
 	opacity: 1;
 }
-.home-video__iframe {
+.home-featured__iframe {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
 }
-
+@media(min-width: 60rem) {
+	.home-section--featured {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		background-color: transparent;
+	}
+	.home-featured__text {
+		flex: 1 1 30rem;
+		margin-right: 2rem;
+	}
+	.home-featured__container {
+		order: 1;
+		flex: 1 1 50rem;
+		padding: 0;
+		margin-left: 0;
+	}
+}
+@media(min-width: 80rem) {
+	.home-section--featured {
+		align-items: stretch;
+	}
+}
 /**-----------------------------------------
  ## Endorsements
 -----------------------------------------**/
 .ppc-endorsements-wrap {
+	max-width: 75rem;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
@@ -379,7 +501,7 @@ h3 {
 }
 
 .ppc-endorsement {
-	flex: 0 1 10rem;
+	flex: 0 1 6rem;
 	margin: 1rem;
 }
 .ppc-endorsement-link {
@@ -402,7 +524,11 @@ h3 {
 	margin: 1rem auto 0 auto;
 	font-family: 'junction-bold';
 }
-
+@media(min-width: 40rem) {
+	.ppc-endorsement {
+		flex-basis: 10rem;
+	}
+}
 /**-----------------------------------------
  Truth Commissions
 -----------------------------------------**/
@@ -445,6 +571,9 @@ h3 {
 	padding: 0;
 	margin-bottom: 2rem;
 }
+#pageHead > .inside {
+	padding: .5rem 1rem;
+}
 #pageHead .page-head__title {
 	position: relative;
 	max-width: 80%;
@@ -453,6 +582,10 @@ h3 {
 	margin: 0 auto -3rem;
 	color: white;
 	background-color: rgba(80, 80, 80, .8);
+}
+#pageHead .page-head__title--no-image {
+	position: static;
+	margin: 1rem auto 3rem;
 }
 .page-head__image {
 	width: 100%;
@@ -466,6 +599,9 @@ h3 {
 		left: 1rem;
 		top: 1.5rem;
 	}
+	#pageHead .page-head__title--no-image {
+		position: static;
+	}
 }
 @media (min-width: 50rem) {
 	#pageHead .page-head__title {
@@ -474,7 +610,8 @@ h3 {
 }
 @media (min-width: 86rem) {
 	#pageHead .page-head__title {
-	left: calc((100% - 75rem) / 2);
+		left: calc((100% - 75rem) / 2);
+	}
 }
 #content {
 	float: none;
