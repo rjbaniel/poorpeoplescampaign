@@ -198,7 +198,7 @@ h3 {
 	outline: .15rem dotted white;
 }
 
-@media (min-width: 30rem) {
+@media (min-width: 35rem) {
 	#top {
 		margin-bottom: 0;
 	}
@@ -219,7 +219,7 @@ h3 {
 	}
 }
 
-@media (min-width: 50rem) {
+@media (min-width: 55rem) {
 	.navigation-list {
 		display: flex;
 		justify-content: space-between;
@@ -240,12 +240,8 @@ h3 {
 		position: relative;
 		margin: 0 .5rem;
 		max-width: 20rem;
-	}
-	.navigation-list__not-home .navigation-list__item-link {
-		position: relative;
-		top: -25%;
-		-webkit-transform: translateY(50%);
-		transform: translateY(50%);
+		display: flex;
+		align-items: center;
 	}
 }
 @media (min-width: 86rem) {
