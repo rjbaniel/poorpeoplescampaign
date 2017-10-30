@@ -51,3 +51,4 @@
 [08-Jan-2017 22:35:41 UTC] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/option.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/poorpeop/public_html/wp-includes/functions.php on line 8
 [08-Jan-2017 22:56:35 UTC] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/poorpeop/public_html/wp-includes/session.php on line 8
 [14-Mar-2017 03:29:55 UTC] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/poorpeop/public_html/wp-includes/rss-functions.php on line 8
+[21-Oct-2017 21:36:00 UTC] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/poorpeop/public_html/wp-includes/registration-functions.php on line 7

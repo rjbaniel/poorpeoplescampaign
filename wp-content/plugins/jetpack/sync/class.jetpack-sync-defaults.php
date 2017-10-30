@@ -14,6 +14,7 @@ class Jetpack_Sync_Defaults {
 		'permalink_structure',
 		'category_base',
 		'tag_base',
+		'sidebars_widgets',
 		'comment_moderation',
 		'default_comment_status',
 		'page_on_front',
@@ -145,6 +146,8 @@ class Jetpack_Sync_Defaults {
 		'ALTERNATE_WP_CRON',
 		'WP_CRON_LOCK_TIMEOUT',
 		'PHP_VERSION',
+		'WP_MEMORY_LIMIT',
+		'WP_MAX_MEMORY_LIMIT'
 	);
 
 	public static function get_constants_whitelist() {
@@ -188,6 +191,7 @@ class Jetpack_Sync_Defaults {
 		'hosting_provider'                 => array( 'Jetpack_Sync_Functions', 'get_hosting_provider' ),
 		'locale'                           => 'get_locale',
 		'site_icon_url'                    => array( 'Jetpack_Sync_Functions', 'site_icon_url' ),
+		'roles'                            =>  array( 'Jetpack_Sync_Functions', 'roles' ),
 	);
 
 	public static function get_callable_whitelist() {

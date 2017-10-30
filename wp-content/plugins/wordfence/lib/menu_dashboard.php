@@ -4,7 +4,7 @@ $d = new wfDashboard();
 <div class="wrap wordfence">
 	<div class="wf-container-fluid">
 		<?php $pageTitle = "Wordfence Dashboard"; include('pageTitle.php'); ?>
-		<div class="wordfenceHelpLink"><a href="http://docs.wordfence.com/en/Wordfence_Dashboard" target="_blank" class="wfhelp"></a><a href="http://docs.wordfence.com/en/Wordfence_Dashboard" target="_blank">Learn more about the Wordfence Dashboard</a></div>
+		<div class="wordfenceHelpLink"><a href="http://docs.wordfence.com/en/Wordfence_Dashboard" target="_blank" rel="noopener noreferrer" class="wfhelp"></a><a href="http://docs.wordfence.com/en/Wordfence_Dashboard" target="_blank" rel="noopener noreferrer">Learn more about the Wordfence Dashboard</a></div>
 		<div id="wordfenceMode_dashboard"></div>
 		<div class="wf-row wf-add-top">
 			<div class="wf-col-xs-12">
@@ -17,12 +17,12 @@ $d = new wfDashboard();
 							</div>
 						<?php elseif ($d->scanLastStatus == wfDashboard::SCAN_SUCCESS): ?>
 							<div class="wf-dashboard-item-title">
-								<strong>Last scan completed: <?php echo esc_html(date_i18n(get_option('date_format') . ' ' . get_option('time_format'), $d->scanLastCompletion)); ?></strong>
+								<strong>Last scan completed: <?php echo esc_html(wfUtils::formatLocalTime(get_option('date_format') . ' ' . get_option('time_format'), $d->scanLastCompletion)); ?></strong>
 							</div>
 							<div class="wf-dashboard-item-action wf-dashboard-item-action-text wf-dashboard-item-action-text-success">No security problems detected</div>
 						<?php elseif ($d->scanLastStatus == wfDashboard::SCAN_WARNINGS): ?>
 							<div class="wf-dashboard-item-title">
-								<strong>Last scan completed: <?php echo esc_html(date_i18n(get_option('date_format') . ' ' . get_option('time_format'), $d->scanLastCompletion)); ?></strong>
+								<strong>Last scan completed: <?php echo esc_html(wfUtils::formatLocalTime(get_option('date_format') . ' ' . get_option('time_format'), $d->scanLastCompletion)); ?></strong>
 							</div>
 							<div class="wf-dashboard-item-action wf-dashboard-item-action-text wf-dashboard-item-action-text-warning"><a href="<?php echo network_admin_url('admin.php?page=WordfenceScan'); ?>"><?php echo esc_html($d->scanLastStatusMessage); ?></a></div>
 						<?php elseif ($d->scanLastStatus == wfDashboard::SCAN_FAILED): ?>
@@ -53,7 +53,7 @@ $d = new wfDashboard();
 					<div class="wf-dashboard-item-extra">
 						<ul class="wf-dashboard-item-list">
 							<li>
-								<ul class="wf-dashboard-item-list-bordered wf-dashboard-item-list-horizontal-bordered wf-dashboard-item-list-equal">
+								<ul class="wf-dashboard-item-list wf-dashboard-item-list-horizontal wf-dashboard-item-list-equal">
 								<?php foreach ($d->features as $f): ?>
 									<li>
 										<div class="wf-dashboard-item-list-title"><a href="<?php echo esc_html($f['link']); ?>"><?php echo esc_html($f['name']); ?></a></div>
@@ -95,11 +95,6 @@ $d = new wfDashboard();
 				<!-- begin total attacks blocked network -->
 				<?php include(dirname(__FILE__) . '/dashboard/widget_networkattacks.php'); ?>
 				<!-- end total attacks blocked network -->
-				<?php if (isset($d->blacklist7d)): ?>
-					<!-- begin blacklist blocks -->
-					<?php include(dirname(__FILE__) . '/dashboard/widget_blacklist.php'); ?>
-					<!-- end blacklist blocks -->
-				<?php endif; ?> 
 				<!-- begin countries blocked -->
 				<?php include(dirname(__FILE__) . '/dashboard/widget_countries.php'); ?>
 				<!-- end countries blocked -->

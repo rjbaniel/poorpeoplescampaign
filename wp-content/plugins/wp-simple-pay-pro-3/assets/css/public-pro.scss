@@ -1,0 +1,67 @@
+@import '_mixins';
+
+.simpay-form-control {
+
+	// Coupon field & apply button
+	.simpay-coupon-field {
+		display: inline-block; // Force inline for apply button
+		min-width: 150px;
+		width: 150px;
+	}
+
+	.simpay-apply-coupon {
+		margin-left: 10px;
+	}
+
+	// Common attributes for both left and right positioned currency symbols
+	.simpay-currency-symbol {
+		background-color: #f2f2f2;
+		border-top: 1px solid #ddd;
+		border-bottom: 1px solid #ddd;
+		margin: 0;
+		padding: 0 10px;
+		height: 35px;
+		line-height: 35px;
+		float: left;
+		@include box-sizing(border-box);
+	}
+
+	// Specific styles for the left currency symbol
+	.simpay-currency-symbol-left {
+		border-left: 1px solid #ddd;
+		border-right: none;
+	}
+
+	// Specific styles for the right currency symbol
+	.simpay-currency-symbol-right {
+		border-left: none;
+		border-right: 1px solid #ddd;
+	}
+
+	// Custom amount fields
+	.simpay-custom-amount-input {
+		border: 1px solid #ddd;
+		border-radius: 0;
+		margin: 0;
+		padding: 0 10px;
+		height: 35px;
+		line-height: 35px;
+		width: 125px;
+		min-width: 125px;
+		float: left;
+		@include box-sizing(border-box);
+	}
+
+	// Checkbox field
+	.simpay-checkbox-wrap label {
+		display: inline;
+	}
+
+	// Validation error labels
+	.simpay-field-error,
+	.simpay-field-error label.error {
+		color: #a94442;
+		display: block;
+		font-weight: normal;
+	}
+}

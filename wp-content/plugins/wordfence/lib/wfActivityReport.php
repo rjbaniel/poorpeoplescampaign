@@ -1,10 +1,6 @@
 <?php
 
 class wfActivityReport {
-	
-	const BLOCK_TYPE_COMPLEX = 'complex';
-	const BLOCK_TYPE_BRUTE_FORCE = 'bruteforce';
-	const BLOCK_TYPE_BLACKLIST = 'blacklist';
 
 	/**
 	 * @var int
@@ -189,7 +185,7 @@ class wfActivityReport {
 		);
 	}
 	
-	public function getBlockedCount($maxAgeDays = null, $grouping = null) {
+	public function getBlockedCount($maxAgeDays = null) {
 		$maxAgeDays = (int) $maxAgeDays;
 		if ($maxAgeDays <= 0) {
 			$interval = 'FLOOR(UNIX_TIMESTAMP(DATE_SUB(NOW(), interval 7 day)) / 86400)';
@@ -204,69 +200,15 @@ class wfActivityReport {
 		}
 		else {
 			$interval = 'FLOOR(UNIX_TIMESTAMP(DATE_SUB(NOW(), interval ' . $maxAgeDays . ' day)) / 86400)';
-		}
-		
-		//Possible values for blockType: throttle, manual, brute, fakegoogle, badpost, country, advanced, blacklist, waf
-		$groupingWHERE = '';
-		switch ($grouping) {
-			case self::BLOCK_TYPE_COMPLEX:
-				$groupingWHERE = ' AND blockType IN ("throttle", "fakegoogle", "badpost", "country", "advanced", "waf", "manual")';
-				break;
-			case self::BLOCK_TYPE_BRUTE_FORCE:
-				$groupingWHERE = ' AND blockType IN ("brute")';
-				break;
-			case self::BLOCK_TYPE_BLACKLIST:
-				$groupingWHERE = ' AND blockType IN ("blacklist")'; 
-				break;
 		}
 		
 		$count = $this->db->get_var(<<<SQL
 SELECT SUM(blockCount) as blockCount
 FROM {$this->db->prefix}wfBlockedIPLog
-WHERE unixday >= {$interval}{$groupingWHERE}
+WHERE unixday >= {$interval}
 SQL
 			);
 		return $count;
-	}
-	
-	public function getBlacklistBlockedStats($maxAgeDays = null, $ips = null) {
-		$maxAgeDays = (int) $maxAgeDays;
-		if ($maxAgeDays <= 0) {
-			$interval = 'FLOOR(UNIX_TIMESTAMP(DATE_SUB(NOW(), interval 7 day)) / 86400)';
-			switch (wfConfig::get('email_summary_interval', 'weekly')) {
-				case 'daily':
-					$interval = 'FLOOR(UNIX_TIMESTAMP(DATE_SUB(NOW(), interval 1 day)) / 86400)';
-					break;
-				case 'monthly':
-					$interval = 'FLOOR(UNIX_TIMESTAMP(DATE_SUB(NOW(), interval 1 month)) / 86400)';
-					break;
-			}
-		}
-		else {
-			$interval = 'FLOOR(UNIX_TIMESTAMP(DATE_SUB(NOW(), interval ' . $maxAgeDays . ' day)) / 86400)';
-		}
-		
-		if ($ips !== null) {
-			foreach ($ips as &$ip) {
-				$ip = '"' . esc_sql($ip) . '"';
-			}
-			$ipsWHERE = ' AND IP IN (' . implode(',', $ips) . ')';
-		}
-		
-		$stats = $this->db->get_results(<<<SQL
-SELECT SUM(blockCount) as blockCount, IP, countryCode
-FROM {$this->db->prefix}wfBlockedIPLog
-WHERE unixday >= {$interval}{$ipsWHERE} GROUP BY IP
-SQL
-		, ARRAY_A);
-		
-		if ($stats) {
-			foreach ($stats as &$row) {
-				$row['countryName'] = $this->getCountryNameByCode($row['countryCode']);
-			}
-		}
-		
-		return $stats;
 	}
 
 	/**
@@ -467,11 +409,17 @@ SQL
 	}
 
 	/**
-	 * Remove entries older than a week in the IP log.
+	 * Remove entries older than a month in the IP log.
 	 */
 	public function rotateIPLog() {
 		$this->db->query(<<<SQL
 DELETE FROM {$this->db->base_prefix}wfBlockedIPLog
+WHERE unixday < FLOOR(UNIX_TIMESTAMP(DATE_SUB(NOW(), interval 1 month)) / 86400)
+SQL
+		);
+		
+		$this->db->query(<<<SQL
+DELETE FROM {$this->db->base_prefix}wfBlockedCommentLog
 WHERE unixday < FLOOR(UNIX_TIMESTAMP(DATE_SUB(NOW(), interval 1 month)) / 86400)
 SQL
 		);
@@ -481,7 +429,7 @@ SQL
 	 * @param mixed $ip_address
 	 * @param int|null $unixday
 	 */
-	public static function logBlockedIP($ip_address, $unixday = null, $type = null, $count = 1) {
+	public static function logBlockedIP($ip_address, $unixday = null, $type = null) {
 		/** @var wpdb $wpdb */
 		global $wpdb;
 		
@@ -509,10 +457,45 @@ SQL
 
 		$wpdb->query($wpdb->prepare(<<<SQL
 INSERT INTO $blocked_table (IP, countryCode, blockCount, unixday, blockType)
-VALUES (%s, %s, %d, $unixday_insert, %s)
-ON DUPLICATE KEY UPDATE blockCount = blockCount + VALUES(blockCount)
+VALUES (%s, %s, 1, $unixday_insert, %s)
+ON DUPLICATE KEY UPDATE blockCount = blockCount + 1
 SQL
-			, $ip_bin, $country, $count, $type));
+			, $ip_bin, $country, $type));
+	}
+	
+	/**
+	 * @param mixed $ip_address
+	 * @param int|null $unixday
+	 */
+	public static function logBlockedComment($ip_address, $type, $unixday = null) {
+		/** @var wpdb $wpdb */
+		global $wpdb;
+		
+		//Possible values for $type: anon, gsb, reputation
+		
+		if (wfUtils::isValidIP($ip_address)) {
+			$ip_bin = wfUtils::inet_pton($ip_address);
+		}
+		else {
+			$ip_bin = $ip_address;
+			$ip_address = wfUtils::inet_ntop($ip_bin);
+		}
+		
+		$blocked_table = "{$wpdb->base_prefix}wfBlockedCommentLog";
+		
+		$unixday_insert = 'FLOOR(UNIX_TIMESTAMP() / 86400)';
+		if (is_int($unixday)) {
+			$unixday_insert = absint($unixday);
+		}
+		
+		$country = wfUtils::IP2Country($ip_address);
+		
+		$wpdb->query($wpdb->prepare(<<<SQL
+INSERT INTO {$blocked_table} (IP, countryCode, blockCount, unixday, blockType)
+VALUES (%s, %s, 1, {$unixday_insert}, %s)
+ON DUPLICATE KEY UPDATE blockCount = blockCount + 1
+SQL
+			, $ip_bin, $country, $type));
 	}
 
 	/**
@@ -692,7 +675,7 @@ class wfRecentlyModifiedFiles extends wfDirectoryIterator {
 	public function __construct($directory = ABSPATH, $max_files_per_directory = 20000, $max_iterations = 250000, $time_range = 604800) {
 		parent::__construct($directory, $max_files_per_directory, $max_iterations);
 		$this->time_range = $time_range;
-		$excluded_directories = explode(',', (string) wfConfig::get('email_summary_excluded_directories'));
+		$excluded_directories = explode("\n", wfUtils::cleanupOneEntryPerLine(wfConfig::get('email_summary_excluded_directories', '')));
 		$this->excluded_directories = array();
 		foreach ($excluded_directories  as $index => $path) {
 			if (($dir = realpath(ABSPATH . $path)) !== false) {
@@ -782,14 +765,14 @@ class wfActivityReportView extends wfView {
 		if ($unix_time === null) {
 			$unix_time = time();
 		}
-		return date_i18n('F j, Y g:ia', $unix_time);
+		return wfUtils::formatLocalTime('F j, Y g:ia', $unix_time);
 	}
 	
 	public function attackTime($unix_time = null) {
 		if ($unix_time === null) {
 			$unix_time = time();
 		}
-		return date_i18n('F j, Y', $unix_time) . "<br>" . date_i18n('g:ia', $unix_time);
+		return wfUtils::formatLocalTime('F j, Y', $unix_time) . "<br>" . wfUtils::formatLocalTime('g:ia', $unix_time);
 	}
 	
 	public function displayIP($binaryIP) {

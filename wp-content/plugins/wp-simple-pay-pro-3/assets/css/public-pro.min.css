@@ -1,0 +1,6 @@
+/*! WP Simple Pay Pro 3 - 3.1.7
+ * https://wpsimplepay.com/
+ * Copyright (c) Moonstone Media 2017
+ * Licensed GPLv2+ */
+
+.simpay-clearfix:after,.simpay-clearfix:before{content:" ";display:table}.simpay-clearfix:after{clear:both}.simpay-form-control .simpay-coupon-field{display:inline-block;min-width:150px;width:150px}.simpay-form-control .simpay-apply-coupon{margin-left:10px}.simpay-form-control .simpay-currency-symbol{background-color:#f2f2f2;border-top:1px solid #ddd;border-bottom:1px solid #ddd;margin:0;padding:0 10px;height:35px;line-height:35px;float:left;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.simpay-form-control .simpay-currency-symbol-left{border-left:1px solid #ddd;border-right:none}.simpay-form-control .simpay-currency-symbol-right{border-left:none;border-right:1px solid #ddd}.simpay-form-control .simpay-custom-amount-input{border:1px solid #ddd;border-radius:0;margin:0;padding:0 10px;height:35px;line-height:35px;width:125px;min-width:125px;float:left;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.simpay-form-control .simpay-checkbox-wrap label{display:inline}.simpay-form-control .simpay-field-error,.simpay-form-control .simpay-field-error label.error{color:#a94442;display:block;font-weight:400}

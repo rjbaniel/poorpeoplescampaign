@@ -11,16 +11,15 @@ class WPSEO_Configuration_Page {
 	const PAGE_IDENTIFIER = 'wpseo_configurator';
 
 	/**
-	 * WPSEO_Configuration_Wizard constructor.
+	 * Sets the hooks when the user has enought rights and is on the right page.
 	 */
-	public function __construct() {
+	public function set_hooks() {
+		if ( ! ( $this->is_config_page() && current_user_can( WPSEO_Configuration_Endpoint::CAPABILITY_RETRIEVE ) ) ) {
+			return;
+		}
 
 		if ( $this->should_add_notification() ) {
 			$this->add_notification();
-		}
-
-		if ( filter_input( INPUT_GET, 'page' ) !== self::PAGE_IDENTIFIER ) {
-			return;
 		}
 
 		// Register the page for the wizard.
@@ -52,7 +51,7 @@ class WPSEO_Configuration_Page {
 	 *  Registers the page for the wizard.
 	 */
 	public function add_wizard_page() {
-		add_dashboard_page( '', '', 'manage_options', self::PAGE_IDENTIFIER, '' );
+		add_dashboard_page( '', '', 'wpseo_manage_options', self::PAGE_IDENTIFIER, '' );
 	}
 
 	/**
@@ -105,8 +104,7 @@ class WPSEO_Configuration_Page {
 				printf(
 					/* translators: %s expands to Yoast SEO. */
 					__( '%s &rsaquo; Configuration Wizard', 'wordpress-seo' ),
-					'Yoast SEO'
-				);
+					'Yoast SEO' );
 			?></title>
 			<?php
 			wp_print_head_scripts();
@@ -122,17 +120,20 @@ class WPSEO_Configuration_Page {
 			do_action( 'wpseo_configuration_wizard_head' );
 			?>
 		</head>
-		<body class="wp-admin">
+		<body class="wp-admin wp-core-ui">
 		<div id="wizard"></div>
-		<a class="yoast-wizard-return-link" href="<?php echo $dashboard_url ?>">
-			<?php
-			printf(
-				/* translators: %s expands to Yoast SEO. */
-				__( 'Go back to the %s dashboard.', 'wordpress-seo' ),
-				'Yoast SEO'
-			);
-			?>
-		</a>
+		<div role="contentinfo" class="yoast-wizard-return-link-container">
+			<a class="button yoast-wizard-return-link" href="<?php echo $dashboard_url; ?>">
+				<span aria-hidden="true" class="dashicons dashicons-no"></span>
+				<?php
+				printf(
+					/* translators: %s expands to Yoast SEO. */
+					__( 'Close wizard', 'wordpress-seo' ),
+					'Yoast SEO'
+				);
+				?>
+			</a>
+		</div>
 		<?php
 			wp_print_media_templates();
 			wp_print_footer_scripts();
@@ -140,7 +141,7 @@ class WPSEO_Configuration_Page {
 			/**
 			 * Is called before the closing </body> tag in the Yoast Configuration wizard.
 			 *
-			 * Allows users to add their own scripts or content.
+			 * Allows users to add their own scripts.
 			 *
 			 * @since 4.0
 			 */
@@ -160,7 +161,6 @@ class WPSEO_Configuration_Page {
 	 * @return array The API endpoint config.
 	 */
 	public function get_config() {
-		$translations = $this->get_translations();
 		$service      = new WPSEO_GSC_Service();
 		$config       = array(
 			'namespace'         => WPSEO_Configuration_Endpoint::REST_NAMESPACE,
@@ -173,24 +173,33 @@ class WPSEO_Configuration_Page {
 			'gscAuthURL'        => $service->get_client()->createAuthUrl(),
 			'gscProfiles'       => $service->get_sites(),
 			'gscNonce'          => wp_create_nonce( 'wpseo-gsc-ajax-security' ),
-			'translations'      => $translations,
 		);
 
 		return $config;
 	}
 
 	/**
+	 * Checks if the current page is the configuration page.
+	 *
+	 * @return bool
+	 */
+	protected function is_config_page() {
+		return ( filter_input( INPUT_GET, 'page' ) === self::PAGE_IDENTIFIER );
+	}
+
+	/**
 	 * Returns the translations necessary for the configuration wizard.
+	 *
+	 * @deprecated 4.9
 	 *
 	 * @returns array The translations for the configuration wizard.
 	 */
 	public function get_translations() {
-		$file = plugin_dir_path( WPSEO_FILE ) . 'languages/yoast-components-' . WPSEO_Utils::get_user_locale() . '.json';
-		if ( file_exists( $file ) && $file = file_get_contents( $file ) ) {
-			return json_decode( $file, true );
-		}
+		_deprecated_function( __METHOD__, 'WPSEO 4.9', 'WPSEO_' );
 
-		return array();
+		$translations = new WPSEO_Configuration_Translations( WPSEO_Utils::get_user_locale() );
+
+		return $translations->retrieve();
 	}
 
 	/**
@@ -230,7 +239,7 @@ class WPSEO_Configuration_Page {
 			array(
 				'type'         => Yoast_Notification::WARNING,
 				'id'           => 'wpseo-dismiss-onboarding-notice',
-				'capabilities' => 'manage_options',
+				'capabilities' => 'wpseo_manage_options',
 				'priority'     => 0.8,
 			)
 		);

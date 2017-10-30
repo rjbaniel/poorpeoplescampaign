@@ -109,6 +109,7 @@
 
 // content component
 .aesop-content-component {
+    clear: both;
 
     .aesop-content-comp-wrap {
         .clearfix();
@@ -281,7 +282,7 @@
             max-width:100% !important; // overriding JS set by video shortcode
         }
         .mejs-overlay-button {
-            margin-top:25% !important; // overriding JS set by video shortcode
+            //margin-top:25% !important; // overriding JS set by video shortcode
         }
 
         .wp-video-shortcode {
@@ -291,6 +292,58 @@
 
     }
 
+    .mejs-inner {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      transition: all 200ms;
+      width: 100%;
+      height: 100%;
+    }
+
+    .mejs-controls {
+      transition: opacity 200ms;
+    }
+
+    .fluid-width-video-wrapper {
+      iframe {
+        top: auto;
+        left: auto;
+        bottom: 0;
+        right: 0;
+        transition: all 200ms;
+      }
+    }
+
+    &.aesop-video-pip {
+      .mejs-inner {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        width: 25vw;
+        height: calc(25vw * .5625);
+        min-width: 200px;
+        min-height: calc(200px * .5625);
+        z-index: 1;
+      }
+
+      .mejs-controls {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .fluid-width-video-wrapper iframe {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        width: 25vw;
+        height: calc(25vw * .5625);
+        min-width: 200px;
+        min-height: calc(200px * .5625);
+        transition: all 200ms;
+        z-index: 1;
+      }
+    }
 }
 
 // quote
@@ -326,7 +379,26 @@
     &.aesop-collection-grid-5col .aesop-collection-item {
         width:20%;
     }
+	
 }
+
+
+
+.aesop-story-collection {
+	.aesop-collection-grid-2col, .aesop-collection-grid-3col, .aesop-collection-grid-4col, .aesop-collection-grid-5col  {
+		@media(max-width:782px) {
+			.aesop-collection-item {
+			   width:50%;
+			}
+		}
+	    @media(max-width:480px) {
+			.aesop-collection-item {
+			   width:100%;
+			}
+		}
+	}
+}
+
 
 .aesop-collection-load-more {
     width:100%;
